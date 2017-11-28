@@ -1,6 +1,8 @@
 monsterfication
 ===============
 
+http://localhost:8000/
+
 #INSTALL
 ### PROJECT
 * git clone https://github.com/loigez/monsterfication.git
