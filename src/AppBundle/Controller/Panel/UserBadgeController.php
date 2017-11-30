@@ -35,7 +35,12 @@ class UserBadgeController extends Controller
      */
     public function unactivateAction(Request $request)
     {
-        return $this->redirectToRoute('admin_panel_user_badge_index', ['userId' => (int)$request->get('userId')]);
+        /** @var UserBadgeProgressService $userBadgeProgressService */
+        $userBadgeProgressService = $this->get('user_badge_progress.service');
+        $userBadgeProgressService->unActivateUsersBadge((int)$request->get('id'));
+        $progress = $userBadgeProgressService->getById((int)$request->get('id'));
+
+        return $this->redirectToRoute('admin_panel_user_badge_index', ['userId' => $progress->getUser()->getId()]);
     }
 
 
@@ -44,20 +49,12 @@ class UserBadgeController extends Controller
      */
     public function activateAction(Request $request)
     {
+        /** @var UserBadgeProgressService $userBadgeProgressService */
+        $userBadgeProgressService = $this->get('user_badge_progress.service');
+        $userBadgeProgressService->activateUsersBadge((int)$request->get('id'));
+        $progress = $userBadgeProgressService->getById((int)$request->get('id'));
 
-//        /** @var BadgeService $badgeService */
-//        $badgeService = $this->get('badge.service');
-//        $badge = $badgeService->find((int)$request->get('badgeId'));
-//
-//        /** @var UserService $userService */
-//        $userService = $this->get('user.service');
-//        $user = $userService->getById((int)$request->get('userId'));
-//
-//        /** @var UserBadgeProgressService $userBadgeProgressService */
-//        $userBadgeProgressService = $this->get('user_badge_progress.service');
-//        $userBadgeProgressService->activateUsersBadge($user, $badge);
-
-        return $this->redirectToRoute('admin_panel_user_badge_index', ['userId' => (int)$request->get('userId')]);
+        return $this->redirectToRoute('admin_panel_user_badge_index', ['userId' => $progress->getUser()->getId()]);
 
     }
 }

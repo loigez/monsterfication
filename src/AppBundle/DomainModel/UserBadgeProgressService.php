@@ -44,14 +44,16 @@ class UserBadgeProgressService
     }
 
     /**
-     * @param User $user
-     * @param Badge $badge
+     * @param int $id
      */
-    public function activateUsersBadge(User $user, Badge $badge)
+    public function activateUsersBadge($id)
     {
         $badgesToUser = $this->entityManager
             ->getRepository(UserBadgeProgress::class)
-            ->findBadgeProgressForUser($badge, $user);
+            ->find($id);
+
+        /** @var Badge $badge */
+        $badge = $badgesToUser->getBadge();
 
         $badgesToUser->setState(State::UNLOCKED);
         $badgesToUser->setProgress($badge->getTarget());
@@ -60,17 +62,16 @@ class UserBadgeProgressService
     }
 
     /**
-     * @param User $user
-     * @param Badge $badge
+     * @param int $id
      */
-    public function unactivateUsersBadge(User $user, Badge $badge)
+    public function unActivateUsersBadge($id)
     {
         $badgesToUser = $this->entityManager
             ->getRepository(UserBadgeProgress::class)
-            ->findBadgeProgressForUser($badge, $user);
+            ->find($id);
 
         $badgesToUser->setState(State::LOCKED);
-        $badgesToUser->setProgress($badge->getTarget());
+        $badgesToUser->setProgress(0);
         $this->entityManager->persist($badgesToUser);
         $this->entityManager->flush();
     }
@@ -80,6 +81,15 @@ class UserBadgeProgressService
     {
         $this->entityManager->persist($progressBadge);
         $this->entityManager->flush();
+    }
+
+    /**
+     * @param int $id
+     * @return null|object
+     */
+    public function getById($id)
+    {
+        return $this->entityManager->getRepository(UserBadgeProgress::class)->find($id);
     }
 
 
