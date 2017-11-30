@@ -14,14 +14,8 @@ class MainController extends Controller
     public function indexAction(Request $request)
     {
 
-        $user = $this->get('user.service');
-        $userId = (int)$request->get('id', 1);
-
-        $userData = $user->getById($userId);
-
         return $this->render('default/index.html.twig',
             [
-                'user' => $userData
             ]);
     }
 }

@@ -11,11 +11,11 @@
         <nav class="header navbar navbar-light">
             <div class="container">
                 <span class="navbar-brand mb-0 h1">MONSTERFICATION</span>
-
+                {% if is_granted("ROLE_USER") or is_granted("ROLE_ADMIN")%}
                 <ul class="profile navbar-right">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <span>fdsafas</span>
+                            <span>{{ app.user.nickname }}</span>
                             <img src="/assets/images/arrow-down.png" alt="">
                             <img class="profile-avatar avatar" src="/assets/images/avatar2.png" alt="">
                         </a>
@@ -29,20 +29,21 @@
                                             </p>
                                         </div>
                                         <div class="col-lg-8">
-                                            <p class="text-left"><strong>ffdasfdas</strong></p>
-                                            <p class="text-left small">fdasfdas</p>
+                                            <p class="text-left"><strong>{{ app.user.username }}</strong></p>
+                                            <p class="text-left small">{{ app.user.email }}</p>
                                         </div>
                                     </div>
                                 </div>
                             </li>
                             <li>
                                 <div class="navbar-login navbar-login-session">
-                                    <a href="#" class="btn btn-danger btn-block">Logout</a>
+                                    <a href="/logout" class="btn btn-danger btn-block">Logout</a>
                                 </div>
                             </li>
                         </ul>
                     </li>
                 </ul>
+                {% endif %}
             </div>
         </nav>
         {% block body %}{% endblock %}
