@@ -1,8 +1,8 @@
+<h1>LOGIN</h1>
 {% trans_default_domain 'FOSUserBundle' %}
 {% if error %}
     <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 {% endif %}
-
 <form action="{{ path("fos_user_security_check") }}" method="post">
     {% if csrf_token %}
         <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
@@ -16,3 +16,7 @@
 
     <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
 </form>
+
+<div>
+<a href="{{ path('fos_user_registration_register') }}">{{ 'register'|trans({}, 'FOSUserBundle') }}</a>
+</div>
