@@ -34,8 +34,8 @@
                 <td>{{ badge.description }}</td>
                 <td class="text-right">
                     <div>
-                        <a href="">
-                            <i></i> {{ 'action.assign'|trans }}
+                        <a href="{{ path('admin_panel_user_badge_activate', {'userId': user_id, 'badgeId': badge.id}) }}">
+                            <i></i> {{ 'action.activate'|trans }}
                         </a>
                     </div>
                 </td>
