@@ -14,11 +14,10 @@ class MainController extends Controller
      */
     public function indexAction(Request $request)
     {
-//        $monsters = $this->getDoctrine()
-//            ->getRepository(Monsters::class)
-//            ->findAllOrderedByName();
 
-        //var_dump($monsters);
+        $user = $this->get('user.service');
+
+        var_dump($user->getAll());
 
         // replace this example code with whatever you need
         return $this->render('default/index.html.twig', [
