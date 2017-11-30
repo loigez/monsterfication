@@ -2,6 +2,7 @@
 namespace AppBundle\DomainModel;
 
 use AppBundle\Entity\User;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\EntityManagerInterface;
 
 class UserService
