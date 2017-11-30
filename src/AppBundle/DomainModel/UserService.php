@@ -2,6 +2,7 @@
 namespace AppBundle\DomainModel;
 
 use AppBundle\Entity\User;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\EntityManagerInterface;
 
 class UserService
@@ -22,9 +23,14 @@ class UserService
         //repository
     }
 
-    public function getAll()
+    public function findAll()
     {
         return $this->entityManager->getRepository(User::class)->findAll();
+    }
+
+    public function getById(int $id)
+    {
+        return $this->entityManager->getRepository(User::class)->find($id);
     }
 
 }

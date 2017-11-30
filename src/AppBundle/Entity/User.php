@@ -69,7 +69,7 @@ class User extends BaseUser
     }
 
     /**
-     * @return mixed
+     * @return ArrayCollection
      */
     public function getAllProgressBadges()
     {

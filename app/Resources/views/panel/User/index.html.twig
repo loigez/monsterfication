@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>USER LIST</h1>
+
+    {% block header_navigation_links %}
+        <li>
+            <a href="{{ path('admin_panel_user_index') }}">
+                <i class="fa fa-home" aria-hidden="true"></i> {{ 'menu.user.index'|trans }}
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ path('admin_panel_badge_index') }}">
+                <i class="fa fa-list-alt" aria-hidden="true"></i> {{ 'menu.badge.index'|trans }}
+            </a>
+        </li>
+    {% endblock %}
+
+    <table>
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">NAME</th>
+            <th scope="col">DESCRIPTION</th>
+            <th scope="col">ACTION</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                    <div>
+                        <a href="{{ path('admin_panel_user_assign_badge', {userId: user.id}) }}">
+                            <i class="fa fa-eye" aria-hidden="true"></i> {{ 'action.assign_badge'|trans }}
+                        </a>
+                    </div>
+                </td>
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4" align="center">NOT FOUND</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+

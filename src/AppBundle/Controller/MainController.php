@@ -16,10 +16,13 @@ class MainController extends Controller
 
         $user = $this->get('user.service');
 
+        $userId = (int)$request->get('id', 1);
 
-        // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-        ]);
+        $userData = $user->getById($userId);
+
+        return $this->render('default/index.html.twig',
+            [
+                'user' => $userData
+            ]);
     }
 }
