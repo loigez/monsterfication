@@ -2,8 +2,8 @@
 
 namespace AppBundle\Controller\Panel;
 
+use AppBundle\DomainModel\BadgeService;
 use AppBundle\Entity\Badge;
-use AppBundle\Entity\Monsters;
 use AppBundle\Form\BadgeType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -13,9 +13,23 @@ use Symfony\Component\HttpFoundation\Request;
 class PanelController extends Controller
 {
     /**
-     * @Route("/panel/", name="admin_panel")
+     * @Route("/panel/", name="admin_panel_index")
      */
     public function indexAction(Request $request)
+    {
+        /** @var BadgeService $badgeService */
+        $badgeService = $this->get('badge.service');
+
+        return $this->render('panel/index.html.twig', [
+            'badges' => $badgeService->findAll()
+        ]);
+
+    }
+
+    /**
+     * @Route("/panel/badge/", name="admin_panel_badge_add")
+     */
+    public function addBadgeAction(Request $request)
     {
         $badge = new Badge();
         $form = $this->createForm(BadgeType::class, $badge);
@@ -23,8 +37,23 @@ class PanelController extends Controller
             'label' => 'Create badge',
         ));
 
-        return $this->render('panel/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+        return $this->render('panel/add_badge.html.twig', [
+            'badge_form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/panel/user/", name="admin_panel_user_assign_badge")
+     */
+    public function assignBadgeAction(Request $request)
+    {
+        $badge = new Badge();
+        $form = $this->createForm(BadgeType::class, $badge);
+        $form->add('submit', SubmitType::class, array(
+            'label' => 'Create badge',
+        ));
+
+        return $this->render('panel/add_badge.html.twig', [
             'badge_form' => $form->createView()
         ]);
     }
