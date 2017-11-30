@@ -65,7 +65,7 @@ class Badge
      */
     public function getName(): string
     {
-        return $this->name;
+        return (string)$this->name;
     }
 
     /**
@@ -81,7 +81,7 @@ class Badge
      */
     public function getDescription(): string
     {
-        return $this->description;
+        return (string)$this->description;
     }
 
     /**
@@ -113,7 +113,7 @@ class Badge
      */
     public function getRule(): string
     {
-        return $this->rule;
+        return (string)$this->rule;
     }
 
     /**

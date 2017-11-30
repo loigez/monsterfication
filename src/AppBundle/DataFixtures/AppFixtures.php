@@ -48,9 +48,9 @@ class AppFixtures extends Fixture
         for ($i = 0; $i < self::USERS_NUMBER; $i++) {
             $user = new User();
             $user->setEmail("mosterfication_{$i}@getresponse.com");
-            $user->setUserName("username {$i}");
+            $user->setUsername("username {$i}");
             $user->setNickname("nickname {$i}");
-            $user->setRole(0);
+            $user->setPassword('');
             $this->addReference('user-progress-' . $i, $user);
             $manager->persist($user);
         }

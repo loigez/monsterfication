@@ -5,20 +5,22 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\OneToMany;
+use FOS\UserBundle\Model\User as BaseUser;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="user")
+ * @ORM\Table(name="`user`")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
-class User
+class User extends BaseUser
 {
     /**
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * One User has Many UserBadgeProgresses.
@@ -26,38 +28,32 @@ class User
      * @var ArrayCollection
      */
     private $userBadgeProgresses;
-
     /**
      * @ORM\Column(type="string", length=512)
+     *
+     * @Assert\NotBlank(message="Please enter your nickname.", groups={"Registration", "Profile"})
+     * @Assert\Length(
+     *     min=3,
+     *     max=255,
+     *     minMessage="The nickname is too short.",
+     *     maxMessage="The nickname is too long.",
+     *     groups={"Registration", "Profile"}
+     * )
      * @var string
      */
-    private $email;
-    /**
-     * @ORM\Column(type="string", length=512)
-     * @var int
-     */
-    private $role;
-    /**
-     * @ORM\Column(type="string", length=512)
-     * @var string
-     */
-    private $userName;
-    /**
-     * @ORM\Column(type="string", length=512)
-     * @var string
-     */
-    private $nickname;
+    protected $nickname;
 
     /**
      * User constructor.
      */
     public function __construct()
     {
+        parent::__construct();
         $this->userBadgeProgresses = new ArrayCollection();
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getId()
     {
@@ -65,7 +61,7 @@ class User
     }
 
     /**
-     * @param mixed $id
+     * @param int $id
      */
     public function setId($id)
     {
@@ -115,41 +111,9 @@ class User
     /**
      * @param string $email
      */
-    public function setEmail(string $email)
+    public function setEmail($email)
     {
         $this->email = $email;
-    }
-
-    /**
-     * @return int
-     */
-    public function getRole(): int
-    {
-        return $this->role;
-    }
-
-    /**
-     * @param int $role
-     */
-    public function setRole(int $role)
-    {
-        $this->role = $role;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUserName(): string
-    {
-        return $this->userName;
-    }
-
-    /**
-     * @param string $userName
-     */
-    public function setUserName(string $userName)
-    {
-        $this->userName = $userName;
     }
 
     /**
@@ -157,7 +121,7 @@ class User
      */
     public function getNickname(): string
     {
-        return $this->nickname;
+        return (string)$this->nickname;
     }
 
     /**
