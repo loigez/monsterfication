@@ -45,6 +45,7 @@ class UserBadgeProgressService
     public function persist(UserBadgeProgress $progressBadge)
     {
         $this->entityManager->persist($progressBadge);
+        $this->entityManager->flush();
     }
 
 
