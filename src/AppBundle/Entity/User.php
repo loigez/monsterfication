@@ -20,11 +20,6 @@ class User extends BaseUser
     protected $id;
     /**
      * @ORM\Column(type="string", length=512)
-     * @var int
-     */
-    protected $role;
-    /**
-     * @ORM\Column(type="string", length=512)
      * @var string
      */
     protected $userName;
@@ -59,14 +54,6 @@ class User extends BaseUser
     }
 
     /**
-     * @return string
-     */
-    public function getEmail(): string
-    {
-        return $this->email;
-    }
-
-    /**
      * @return int
      */
     public function getRole(): int
@@ -82,13 +69,6 @@ class User extends BaseUser
         $this->role = $role;
     }
 
-    /**
-     * @return string
-     */
-    public function getUserName(): string
-    {
-        return $this->userName;
-    }
 
     /**
      * @return string
