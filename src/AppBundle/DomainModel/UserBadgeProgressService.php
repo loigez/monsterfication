@@ -42,13 +42,27 @@ class UserBadgeProgressService
         $this->entityManager->flush();
     }
 
+    /**
+     * @param User $user
+     * @param Badge $badge
+     */
+    public function activateUsersBadge(User $user, Badge $badge)
+    {
+        $badgesToUser = $this->entityManager
+            ->getRepository(UserBadgeProgress::class)
+            ->findBadgeProgressForUser($badge, $user);
+
+        $badgesToUser->setState(2);
+        $badgesToUser->setProgress($badge->getTarget());
+        $this->entityManager->persist($badgesToUser);
+        $this->entityManager->flush();
+    }
+
     public function persist(UserBadgeProgress $progressBadge)
     {
         $this->entityManager->persist($progressBadge);
         $this->entityManager->flush();
     }
-
-
 
 
 }

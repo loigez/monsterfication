@@ -27,27 +27,4 @@ class UserController extends Controller
         ]);
 
     }
-
-
-    /**
-     * @Route("/panel/user/assign", name="admin_panel_user_assign_badge")
-     */
-    public function assignBadgeToUserAction(Request $request)
-    {
-//        /** @var BadgeService $badgeService */
-//        $badgeService = $this->get('badge.service');
-//
-//
-//        $badge = new Badge();
-//        $form = $this->createForm(BadgeType::class, $badge);
-//        $form->add('submit', SubmitType::class, array(
-//            'label' => 'Create badge',
-//        ));
-
-        return $this->render('panel/user/assign_badge.html.twig',[
-        ]);
-//        return $this->render('panel/add_badge.html.twig', [
-//            //'badge_form' => $form->createView()
-//        ]);
-    }
 }
