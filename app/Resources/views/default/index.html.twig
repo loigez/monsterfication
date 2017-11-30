@@ -6,35 +6,6 @@
     <div class="container">
         <div class="row">
             <div class="content-main col-xl-8">
-                <div class="mf-badge mf-badge-unlocked">
-                    <div class="mf-badge-icon">
-                        {% embed '@app_views/components/icons.twig' with { icon: 'baby_step' } %}{% endembed %}
-                    </div>
-                    <div class="mf-badge-content">
-                        <h3 class="mf-badge-content-title">Baby steps</h3>
-                        <p class="mf-badge-content-desc">Pierwszy commit</p>
-                    </div>
-                    <div class="mf-badge-date">
-                        <div class="mf-badge-date-label">unlock</div>
-                        <div class="mf-badge-date-value">30.11.2017</div>
-                    </div>
-                </div>
-
-                <div class="mf-badge mf-badge-locked">
-                    <div class="mf-badge-icon">
-                        {% embed '@app_views/components/icons.twig' with { icon: 'lock' } %}{% endembed %}
-                    </div>
-                    <div class="mf-badge-content">
-                        <h3 class="mf-badge-content-title">Good job kid!</h3>
-                        <p class="mf-badge-content-desc">100 commitów jednego autora</p>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 24%" aria-valuenow="24" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <div class="progress-value">
-                            24/100
-                        </div>
-                    </div>
-                </div>
 
                 {% for badgeWithProgress in allBadgesWithProgress %}
 
@@ -54,7 +25,7 @@
                             {% if badgeWithProgress.state != stateCompleted %}
                                 {% embed '@app_views/components/icons.twig' with { icon: 'lock' } %}{% endembed %}
                             {% else %}
-                                {% embed '@app_views/components/icons.twig' with { icon: 'baby_step' } %}{% endembed %}
+                                {% embed '@app_views/components/icons.twig' with { icon: badgeWithProgress.badge.iconName } %}{% endembed %}
                             {% endif %}
                         </div>
                         <div class="mf-badge-content">
@@ -79,6 +50,7 @@
                 {% endfor %}
 
             </div>
+
             <div class="content-sidebar col-xl-4">
                 <div class="widget">
                     <div class="widget-title">Activity stream</div>
