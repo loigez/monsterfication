@@ -7675,6 +7675,7 @@ input[type='submit'] {
 }
 .header .navbar-brand svg {
   max-width: 175px;
+  width: 175px;
 }
 .profile {
   list-style: none;
