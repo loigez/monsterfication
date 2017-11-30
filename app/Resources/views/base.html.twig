@@ -15,7 +15,7 @@
                 <ul class="profile navbar-right">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <span>{{ user.nickname}}</span>
+                            <span>{{ user.nickname }}</span>
                             <img src="/assets/images/arrow-down.png" alt="">
                             <img class="profile-avatar avatar" src="/assets/images/avatar2.png" alt="">
                         </a>
@@ -51,5 +51,6 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
         {% endblock %}
+        <span>{{ dump(user) }}</span>
     </body>
 </html>
