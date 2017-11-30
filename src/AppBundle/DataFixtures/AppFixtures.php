@@ -52,6 +52,7 @@ class AppFixtures extends Fixture
             $badge->setName($badgeItem['name']);
             $badge->setDescription($badgeItem['description']);
             $badge->setRule('AddByHandRule');
+            $badge->setTarget(100);
             $this->addReference('badge-progress-' . $id, $badge);
             $manager->persist($badge);
         }

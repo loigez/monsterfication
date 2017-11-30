@@ -33,6 +33,12 @@ class Badge
     private $description;
 
     /**
+     * @ORM\Column(type="integer")
+     * @var int
+     */
+    private $target;
+
+    /**
      * One Badge has Many UserBadgeProgresses.
      * @OneToMany(targetEntity="UserBadgeProgress", mappedBy="badge")
      */
@@ -122,6 +128,22 @@ class Badge
     public function setRule(string $rule)
     {
         $this->rule = $rule;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTarget()
+    {
+        return $this->target;
+    }
+
+    /**
+     * @param int $target
+     */
+    public function setTarget($target)
+    {
+        $this->target = $target;
     }
 
 
