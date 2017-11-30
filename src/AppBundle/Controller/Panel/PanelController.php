@@ -31,11 +31,20 @@ class PanelController extends Controller
      */
     public function addBadgeAction(Request $request)
     {
+        /** @var BadgeService $badgeService */
+        $badgeService = $this->get('badge.service');
+
         $badge = new Badge();
         $form = $this->createForm(BadgeType::class, $badge);
         $form->add('submit', SubmitType::class, array(
             'label' => 'Create badge',
         ));
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $badgeService->save($form->getData());
+            //return $this->redirectToRoute('task_success');
+        }
 
         return $this->render('panel/add_badge.html.twig', [
             'badge_form' => $form->createView()

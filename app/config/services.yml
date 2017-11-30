@@ -29,27 +29,14 @@ services:
         public: true
         tags: ['controller.service_arguments']
 
-#    AppBundle\DomainModel\:
-#        resource: '../../src/DomainModel/*'
-#        public: true
-#        tags: ['controller.service_arguments']
-#
-#    AppBundle\Form\:
-#        resource: '../../src/DomainModel/*'
-#        public: true
-#        tags: ['controller.service_arguments']
-#
+    badge.service:
+      class: AppBundle\DomainModel\BadgeService
+      arguments: [ "@doctrine.orm.entity_manager" ]
+    user.service:
+      class: AppBundle\DomainModel\UserService
+      arguments: [ "@doctrine.orm.entity_manager" ]
 
-#    badge.service:
-#      class: AppBundle\DomainModel\BadgeService
-#      arguments: [ "@doctrine.orm.entity_manager" ]
-#    user.service:
-#      class: AppBundle\DomainModel\UserService
-#      arguments: [ "@doctrine.orm.entity_manager" ]
-#
-#    app.form.registration:
-#      class: AppBundle\Form\RegistrationType
-#      tags:
-#        - { name: form.type, alias: app_user_registration }
-#
-#
+    app.form.registration:
+      class: AppBundle\Form\RegistrationType
+      tags:
+        - { name: form.type, alias: app_user_registration }

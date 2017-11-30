@@ -29,4 +29,13 @@ class BadgeService
         return $this->entityManager->getRepository(Badge::class)->findAll();
     }
 
+    /**
+     * @param Badge $badge
+     */
+    public function save(Badge $badge)
+    {
+        $this->entityManager->persist($badge);
+        $this->entityManager->flush();
+    }
+
 }
