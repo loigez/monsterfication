@@ -7703,13 +7703,10 @@ img {
 .mf-badge-locked {
   background: #fbfbfb;
 }
-.mf-badge-icon i {
+.mf-badge-icon svg {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  background: #ffc431;
-  color: transparent;
-  display: inline-block;
 }
 .mf-badge-content {
   display: flex;

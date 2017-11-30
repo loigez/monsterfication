@@ -6,7 +6,7 @@
             <div class="content-main col-xl-8">
                 <div class="mf-badge mf-badge-unlocked">
                     <div class="mf-badge-icon">
-                        <i>ICON</i>
+                        {% embed '@app_views/components/icons.twig' with { icon: 'baby_step' } %}{% endembed %}
                     </div>
                     <div class="mf-badge-content">
                         <h3 class="mf-badge-content-title">Baby steps</h3>
@@ -20,7 +20,7 @@
 
                 <div class="mf-badge mf-badge-locked">
                     <div class="mf-badge-icon">
-                        <i>ICON</i>
+                        {% embed '@app_views/components/icons.twig' with { icon: 'lock' } %}{% endembed %}
                     </div>
                     <div class="mf-badge-content">
                         <h3 class="mf-badge-content-title">Good job kid!</h3>
