@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div id="welcome">
+            <h1>ASSIGN BADGE</h1>
+        </div>
+
+        {% block header_navigation_links %}
+            <li>
+                <a href="{{ path('admin_panel_user_index') }}">
+                    <i class="fa fa-home" aria-hidden="true"></i> {{ 'menu.user.index'|trans }}
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ path('admin_panel_badge_index') }}">
+                    <i class="fa fa-list-alt" aria-hidden="true"></i> {{ 'menu.badge.index'|trans }}
+                </a>
+            </li>
+        {% endblock %}
+
+    </div>
+{% endblock %}

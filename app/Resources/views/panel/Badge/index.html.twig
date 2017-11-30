@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>BADGES LIST</h1>
+
+    {% block header_navigation_links %}
+        <li>
+            <a href="{{ path('admin_panel_user_index') }}">
+                <i class="fa fa-home" aria-hidden="true"></i> {{ 'menu.user.index'|trans }}
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ path('admin_panel_badge_index') }}">
+                <i class="fa fa-list-alt" aria-hidden="true"></i> {{ 'menu.badge.index'|trans }}
+            </a>
+        </li>
+    {% endblock %}
+
+
+    <a href="{{ path('admin_panel_badge_add') }}">
+        <i class="fa fa-home" aria-hidden="true"></i> {{ 'menu.add_new_badge'|trans }}
+    </a>
+
+
+    <table>
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">NAME</th>
+            <th scope="col">DESCRIPTION</th>
+            <th scope="col">ACTION</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for badge in badges %}
+            <tr>
+                <td>{{ badge.id }}</td>
+                <td>{{ badge.name }}</td>
+                <td>{{ badge.description }}</td>
+                <td class="text-right">
+                    <div>
+                        <a href="">
+                            <i></i> {{ 'action.edit'|trans }}
+                        </a>
+
+                        <a href="">
+                            <i></i> {{ 'action.delete'|trans }}
+                        </a>
+                    </div>
+                </td>
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4" align="center">NOT FOUND</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+

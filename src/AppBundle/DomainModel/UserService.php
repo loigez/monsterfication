@@ -22,7 +22,7 @@ class UserService
         //repository
     }
 
-    public function getAll()
+    public function findAll()
     {
         return $this->entityManager->getRepository(User::class)->findAll();
     }
