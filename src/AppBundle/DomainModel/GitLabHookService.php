@@ -21,14 +21,18 @@ class GitLabHookService
      * @var ArrayCollection
      */
     private $commitCollection;
+    /**
+     * @var UserBadgeProgressService
+     */
+    private $userBadgeProgressService;
 
     /**
      * BadgeService constructor.
      */
-    public function __construct(UserService $userService, BadgeService $badgeService)
+    public function __construct(UserService $userService, UserBadgeProgressService $userBadgeProgressService)
     {
         $this->userService = $userService;
-        $this->badgeService = $badgeService;
+        $this->userBadgeProgressService = $userBadgeProgressService;
     }
 
     public function parseGitLabHook(string $payload)
@@ -68,7 +72,7 @@ class GitLabHookService
                 }
 //                $ruleName = $progressBadge->getBadge()->getRule();
                 $rule = new FirstCommitRule($progressBadge, $commit);
-                
+                $this->userBadgeProgressService->persist($progressBadge);
             }
         }
     }
