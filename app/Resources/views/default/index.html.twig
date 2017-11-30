@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% set stateCompleted = '3' %}
+
 {% block body %}
     <div class="container">
         <div class="row">
@@ -37,7 +39,7 @@
                 {% for badgeWithProgress in allBadgesWithProgress %}
                     <div class="mf-badge mf-badge-locked">
                         <div class="mf-badge-icon">
-                            {% if badgeWithProgress.state != '3' %}
+                            {% if badgeWithProgress.state != stateCompleted %}
                                 {% embed '@app_views/components/icons.twig' with { icon: 'lock' } %}{% endembed %}
                             {% else %}
                                 {% embed '@app_views/components/icons.twig' with { icon: 'baby_step' } %}{% endembed %}
@@ -46,10 +48,10 @@
                         <div class="mf-badge-content">
                             <h3 class="mf-badge-content-title">{{ badgeWithProgress.badge.name }}</h3>
                             <p class="mf-badge-content-desc">{{ badgeWithProgress.badge.description }}</p>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: {{ badgeWithProgress.progress }}%" aria-valuenow="{{ badgeWithProgress.progress }}" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            {% if badgeWithProgress.state != '3' %}
+                            {% if badgeWithProgress.state != stateCompleted %}
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: {{ badgeWithProgress.progress }}%" aria-valuenow="{{ badgeWithProgress.progress }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
                                 <div class="progress-value">
                                     {{ badgeWithProgress.progress }}/100
                                 </div>
@@ -84,11 +86,4 @@
             </div>
         </div>
     </div>
-    {% for badgeWithProgress in allBadgesWithProgress %}
-        <span class="clearfix">{{ badgeWithProgress.badge.name }}</span>
-        <span class="clearfix">{{ badgeWithProgress.badge.description }}</span>
-        <span class="clearfix">{{ badgeWithProgress.state }}</span>
-        <span class="clearfix">{{ badgeWithProgress.progress }}%</span>
-
-    {% endfor %}
 {% endblock %}
