@@ -33,4 +33,12 @@ class UserService
         return $this->entityManager->getRepository(User::class)->find($id);
     }
 
+    public function getByEmail($email)
+    {
+        return $this->entityManager->getRepository(User::class)->findOneBy(
+            ['email' => $email]
+        );
+
+    }
+
 }

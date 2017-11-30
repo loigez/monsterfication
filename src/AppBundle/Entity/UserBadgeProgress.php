@@ -26,6 +26,7 @@ class UserBadgeProgress
      * Many UserBadgeProgresses have One User.
      * @ManyToOne(targetEntity="User", inversedBy="userBadgeProgresses", fetch="EAGER")
      * @JoinColumn(name="user_id", referencedColumnName="id")
+     * @var User
      */
     private $user;
 
@@ -33,6 +34,7 @@ class UserBadgeProgress
      * Many UserBadgeProgresses have One Badge.
      * @ManyToOne(targetEntity="Badge", inversedBy="userBadgeProgresses", fetch="EAGER")
      * @JoinColumn(name="badge_id", referencedColumnName="id")
+     * @var Badge
      */
     private $badge;
     /**
@@ -79,7 +81,7 @@ class UserBadgeProgress
     }
 
     /**
-     * @return mixed
+     * @return Badge
      */
     public function getBadge()
     {
@@ -100,6 +102,22 @@ class UserBadgeProgress
     public function getState(): int
     {
         return $this->state;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isLocked(): bool
+    {
+        return State::LOCKED === $this->state;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isUnlocked(): bool
+    {
+        return !$this->isLocked();
     }
 
     /**
