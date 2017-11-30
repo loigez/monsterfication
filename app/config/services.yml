@@ -35,6 +35,9 @@ services:
     user.service:
       class: AppBundle\DomainModel\UserService
       arguments: [ "@doctrine.orm.entity_manager" ]
+    user_badge_progress.service:
+      class: AppBundle\DomainModel\UserBadgeProgressService
+      arguments: [ "@doctrine.orm.entity_manager" ]
 
     app.form.registration:
       class: AppBundle\Form\RegistrationType
