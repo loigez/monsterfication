@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -20,11 +21,15 @@ class User extends BaseUser
     protected $id;
     /**
      * @ORM\Column(type="string", length=512)
-     * @var string
-     */
-    protected $userName;
-    /**
-     * @ORM\Column(type="string", length=512)
+     *
+     * @Assert\NotBlank(message="Please enter your nickname.", groups={"Registration", "Profile"})
+     * @Assert\Length(
+     *     min=3,
+     *     max=255,
+     *     minMessage="The nickname is too short.",
+     *     maxMessage="The nickname is too long.",
+     *     groups={"Registration", "Profile"}
+     * )
      * @var string
      */
     protected $nickname;
@@ -38,7 +43,7 @@ class User extends BaseUser
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getId()
     {
@@ -46,7 +51,7 @@ class User extends BaseUser
     }
 
     /**
-     * @param mixed $id
+     * @param int $id
      */
     public function setId($id)
     {
@@ -75,7 +80,7 @@ class User extends BaseUser
      */
     public function getNickname(): string
     {
-        return $this->nickname;
+        return (string)$this->nickname;
     }
 
     /**
