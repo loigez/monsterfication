@@ -69,10 +69,14 @@
                                 </div>
                             {% endif %}
                         </div>
+                        {% if badgeWithProgress.state == stateCompleted %}
+                            <div class="mf-badge-date">
+                                <div class="mf-badge-date-label">unlocked</div>
+                                <div class="mf-badge-date-value">{{ badgeWithProgress.unlockDate|date("m/d/Y") }}</div>
+                            </div>
+                        {% endif %}
                     </div>
                 {% endfor %}
-
-                {{ dump(allBadgesWithProgress) }}
 
             </div>
             <div class="content-sidebar col-xl-4">
