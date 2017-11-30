@@ -19,10 +19,12 @@ class MainController extends Controller
         $userId = (int)$request->get('id', 1);
 
         $userData = $user->getById($userId);
+        $allProgressBadges = $userData->getAllProgressBadges();
 
         return $this->render('default/index.html.twig',
             [
-                'user' => $userData
+                'user' => $userData,
+                'allBadgesWithProgress' => $allProgressBadges
             ]);
     }
 }
