@@ -32,7 +32,7 @@ class UserService
      * @param int $id
      * @return null|object
      */
-    public function find($id)
+    public function getById($id)
     {
         return $this->entityManager->getRepository(User::class)->find($id);
     }
