@@ -83,6 +83,8 @@ class AppFixtures extends Fixture
             $user = new User();
             $user->setEmail(self::USERS[$i] . '@getresponse.com');
             $user->setUsername(self::USERS[$i]);
+            $user->setEnabled(true);
+            $user->setRoles(['ROLE_ADMIN']);
             $user->setNickname('nick ' . self::USERS[$i]);
             $user->setPassword('$2y$13$BOaEVAJskV62ygw5ICSIsuL03oK4oON6.aXHfq4TnTOxG5COe1f7e');
             $this->addReference('user-progress-' . $i, $user);
