@@ -3,6 +3,7 @@
 namespace AppBundle\Controller\Panel;
 
 use AppBundle\DomainModel\BadgeService;
+use AppBundle\DomainModel\UserBadgeProgressService;
 use AppBundle\DomainModel\UserService;
 use AppBundle\Entity\Badge;
 use AppBundle\Form\BadgeType;
@@ -46,6 +47,18 @@ class BadgeController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var Badge $badge */
             $badgeService->save($form->getData());
+
+            /** @var UserService $badgeService */
+            $userService = $this->get('user.service');
+            $users = $userService->findAll();
+
+            //badge ???
+
+            /** @var UserBadgeProgressService $userBadgeProgressService */
+            $userBadgeProgressService = $this->get('user_badge_progress.service');
+           // $userBadgeProgressService->assignBadgeToUsers($users, $badge);
+
+
             return $this->redirectToRoute('admin_panel_index');
         }
 
