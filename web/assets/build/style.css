@@ -7659,6 +7659,9 @@ img {
 .header .navbar-brand {
   font-weight: 700;
 }
+.header .navbar-brand svg {
+  max-width: 175px;
+}
 .profile {
   list-style: none;
 }

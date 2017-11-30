@@ -14,16 +14,14 @@ class MainController extends Controller
     public function indexAction(Request $request)
     {
 
-        $user = $this->get('user.service');
+        $userService = $this->get('user.service');
+        $userId = $this->getUser()->getId();
 
-        $userId = (int)$request->get('id', 1);
-
-        $userData = $user->getById($userId);
+        $userData = $userService->getById($userId);
         $allProgressBadges = $userData->getAllProgressBadges();
 
         return $this->render('default/index.html.twig',
             [
-                'user' => $userData,
                 'allBadgesWithProgress' => $allProgressBadges
             ]);
     }
