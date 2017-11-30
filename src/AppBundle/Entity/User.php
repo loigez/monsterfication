@@ -22,6 +22,21 @@ class User
      * @var string
      */
     private $email;
+    /**
+     * @ORM\Column(type="string", length=512)
+     * @var int
+     */
+    private $role;
+    /**
+     * @ORM\Column(type="string", length=512)
+     * @var string
+     */
+    private $userName;
+    /**
+     * @ORM\Column(type="string", length=512)
+     * @var string
+     */
+    private $nickname;
 
     /**
      * @return mixed
@@ -54,4 +69,53 @@ class User
     {
         $this->email = $email;
     }
+
+    /**
+     * @return int
+     */
+    public function getRole(): int
+    {
+        return $this->role;
+    }
+
+    /**
+     * @param int $role
+     */
+    public function setRole(int $role)
+    {
+        $this->role = $role;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUserName(): string
+    {
+        return $this->userName;
+    }
+
+    /**
+     * @param string $userName
+     */
+    public function setUserName(string $userName)
+    {
+        $this->userName = $userName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNickname(): string
+    {
+        return $this->nickname;
+    }
+
+    /**
+     * @param string $nickname
+     */
+    public function setNickname(string $nickname)
+    {
+        $this->nickname = $nickname;
+    }
+
 }
