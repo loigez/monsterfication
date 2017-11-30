@@ -2,7 +2,9 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\OneToMany;
 
 /**
  * @ORM\Entity
@@ -17,6 +19,14 @@ class User
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * One User has Many UserBadgeProgresses.
+     * @OneToMany(targetEntity="UserBadgeProgress", mappedBy="user")
+     * @var ArrayCollection
+     */
+    private $userBadgeProgresses;
+
     /**
      * @ORM\Column(type="string", length=512)
      * @var string
@@ -39,6 +49,14 @@ class User
     private $nickname;
 
     /**
+     * User constructor.
+     */
+    public function __construct()
+    {
+        $this->userBadgeProgresses = new ArrayCollection();
+    }
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -52,6 +70,38 @@ class User
     public function setId($id)
     {
         $this->id = $id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAllProgressBadges()
+    {
+        return $this->userBadgeProgresses;
+    }
+
+    /**
+     * @param mixed $userBadgeProgresses
+     */
+    public function setAllProgressBadges($userBadgeProgresses)
+    {
+        $this->userBadgeProgresses = $userBadgeProgresses;
+    }
+
+    /**
+     * @return UserBadgeProgress
+     */
+    public function getProgressById(int $progressId)
+    {
+        return $this->userBadgeProgresses->get($progressId);
+    }
+
+    /**
+     * @param UserBadgeProgress $userBadgeProgresses
+     */
+    public function addProgress($userBadgeProgresses)
+    {
+        $this->userBadgeProgresses->set($userBadgeProgresses->getId(), $userBadgeProgresses);
     }
 
     /**

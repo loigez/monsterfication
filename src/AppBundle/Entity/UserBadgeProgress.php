@@ -2,7 +2,10 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\ManyToOne;
 
 /**
  * @ORM\Entity
@@ -18,16 +21,20 @@ class UserBadgeProgress
      * @var int
      */
     private $id;
+
     /**
-     * @ORM\Column(type="integer")
-     * @var int
+     * Many UserBadgeProgresses have One User.
+     * @ManyToOne(targetEntity="User", inversedBy="userBadgeProgresses")
+     * @JoinColumn(name="user_id", referencedColumnName="id")
      */
-    private $userId;
+    private $user;
+
     /**
-     * @ORM\Column(type="integer")
-     * @var int
+     * Many UserBadgeProgresses have One Badge.
+     * @ManyToOne(targetEntity="Badge", inversedBy="userBadgeProgresses")
+     * @JoinColumn(name="badge_id", referencedColumnName="id")
      */
-    private $badgeId;
+    private $badge;
     /**
      * @ORM\Column(type="integer")
      * @var int
@@ -40,17 +47,17 @@ class UserBadgeProgress
     private $progress;
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * @param mixed $id
+     * @param int $id
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
     }
@@ -58,33 +65,33 @@ class UserBadgeProgress
     /**
      * @return mixed
      */
-    public function getUserId()
+    public function getUser()
     {
-        return $this->userId;
+        return $this->user;
     }
 
     /**
-     * @param mixed $userId
+     * @param mixed $user
      */
-    public function setUserId($userId)
+    public function setUser($user)
     {
-        $this->userId = $userId;
+        $this->user = $user;
     }
 
     /**
-     * @return int
+     * @return mixed
      */
-    public function getBadgeId(): int
+    public function getBadge()
     {
-        return $this->badgeId;
+        return $this->badge;
     }
 
     /**
-     * @param int $badgeId
+     * @param mixed $badge
      */
-    public function setBadgeId(int $badgeId)
+    public function setBadge($badge)
     {
-        $this->badgeId = $badgeId;
+        $this->badge = $badge;
     }
 
     /**
@@ -118,4 +125,7 @@ class UserBadgeProgress
     {
         $this->progress = $progress;
     }
+
+
+
 }
