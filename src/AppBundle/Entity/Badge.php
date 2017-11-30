@@ -149,7 +149,7 @@ class Badge
      */
     public function setIconName($iconName)
     {
-        $this->IconName = $iconName;
+        $this->iconName = $iconName;
     }
 
 
