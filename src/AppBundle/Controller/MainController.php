@@ -17,10 +17,11 @@ class MainController extends Controller
         $user = $this->get('user.service');
         $userId = (int)$request->get('id', 1);
 
-        // replace this example code with whatever you need
+        $userData = $user->getById($userId);
+
         return $this->render('default/index.html.twig',
             [
-                'user' => $user->getById($userId)
+                'user' => $userData
             ]);
     }
 }

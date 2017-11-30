@@ -24,14 +24,14 @@ class UserBadgeProgress
 
     /**
      * Many UserBadgeProgresses have One User.
-     * @ManyToOne(targetEntity="User", inversedBy="userBadgeProgresses")
+     * @ManyToOne(targetEntity="User", inversedBy="userBadgeProgresses", fetch="EAGER")
      * @JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
 
     /**
      * Many UserBadgeProgresses have One Badge.
-     * @ManyToOne(targetEntity="Badge", inversedBy="userBadgeProgresses")
+     * @ManyToOne(targetEntity="Badge", inversedBy="userBadgeProgresses", fetch="EAGER")
      * @JoinColumn(name="badge_id", referencedColumnName="id")
      */
     private $badge;
