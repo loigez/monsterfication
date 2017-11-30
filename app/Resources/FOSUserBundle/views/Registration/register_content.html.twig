@@ -1,9 +1,95 @@
-<h1>REGISTER</h1>
-{% trans_default_domain 'FOSUserBundle' %}
-
-{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
-    {{ form_widget(form) }}
-    <div>
-        <input type="submit" value="{{ 'registration.submit'|trans }}" />
+<nav class="header navbar navbar-light">
+    <div class="container">
+        <span class="navbar-brand mb-0 h1">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 174.91 38"><defs><clipPath id="a" transform="translate(0 0)"><rect width="174.91" height="38" style="fill:none"/></clipPath></defs><title>logo</title><g style="clip-path:url(#a)"><path d="M48.18,22.36c-.95-5.27-3.52-9.55-6.54-11.48q-.7-.53-1.49-1a6.65,6.65,0,0,0-4.08-1,108.32,108.32,0,0,1-11.8.57,108.34,108.34,0,0,1-11.8-.57,6.65,6.65,0,0,0-4.08,1q-.78.49-1.48,1c-3,1.93-5.6,6.21-6.54,11.48C-1,30.11,1.64,37.08,6.31,37.92c3.15.56,6.41-1.8,8.62-5.77l.15-.28,1.74-2.1C18.2,28.72,20.05,28,24.27,28s6.08.68,7.44,1.73l1.74,2.1.15.28c2.22,4,5.47,6.33,8.62,5.77,4.67-.84,7.33-7.8,5.94-15.56" transform="translate(0 0)" style="fill:#404040"/><path d="M34.91,35.08a7,7,0,1,1,7-7,7,7,0,0,1-7,7" transform="translate(0 0)" style="fill:#fff"/><path d="M34.91,22.16a6,6,0,1,1-6,6,6,6,0,0,1,6-6m0-2a8,8,0,1,0,8,8,8,8,0,0,0-8-8" transform="translate(0 0)" style="fill:#404040"/><path d="M30.79,28.12A4.12,4.12,0,1,0,34.91,24a4.13,4.13,0,0,0-4.12,4.12" transform="translate(0 0)" style="fill:#d93956"/><path d="M13.63,35.08a7,7,0,1,1,7-7,7,7,0,0,1-7,7" transform="translate(0 0)" style="fill:#fff"/><path d="M13.63,22.16a6,6,0,1,1-6,6,6,6,0,0,1,6-6m0-2a8,8,0,1,0,8,8,8,8,0,0,0-8-8" transform="translate(0 0)" style="fill:#404040"/><path d="M9.51,28.12A4.12,4.12,0,1,0,13.64,24a4.13,4.13,0,0,0-4.13,4.12" transform="translate(0 0)" style="fill:#d93956"/><path d="M24.27,25.39a5.26,5.26,0,1,1,5.25-5.25,5.26,5.26,0,0,1-5.25,5.25" transform="translate(0 0)" style="fill:#fff"/><path d="M24.27,15.88A4.26,4.26,0,1,1,20,20.14a4.26,4.26,0,0,1,4.26-4.26m0-2a6.26,6.26,0,1,0,6.25,6.26,6.26,6.26,0,0,0-6.25-6.26" transform="translate(0 0)" style="fill:#404040"/><path d="M27,20.14a2.74,2.74,0,1,1-2.74-2.73A2.73,2.73,0,0,1,27,20.14" transform="translate(0 0)" style="fill:#d93956"/><path d="M35,19.68a1,1,0,0,1-.88-1.47l3.08-5.83-2.11-.61a1,1,0,0,1-.66-1.31l3.3-8.81A1,1,0,0,1,38.64,1h.17l4.4.75a1,1,0,0,1,.64,1.58l-3.69,5,2.24,1.12A1,1,0,0,1,42.71,11l-7,8.34a1,1,0,0,1-.77.36" transform="translate(0 0)" style="fill:#d93956"/><path d="M38.64,2l4.4.75-4.4,5.94,3.31,1.65-7,8.34,3.65-6.92-3.3-1L38.64,2m0-2a2,2,0,0,0-1.87,1.3l-3.3,8.81a2,2,0,0,0,1.32,2.62l.93.27-2.5,4.74A2,2,0,0,0,36.52,20l7-8.34a2,2,0,0,0-.64-3.07L41.66,8l3-4A2,2,0,0,0,43.37.78L39,0l-.34,0" transform="translate(0 0)" style="fill:#404040"/><path d="M57.12,16.14h3.12V17.7a2.87,2.87,0,0,1,.31-.77,1.89,1.89,0,0,1,.41-.5,1.73,1.73,0,0,1,.5-.29A2.17,2.17,0,0,1,62,16l.51,0a2.86,2.86,0,0,1,.8.12,2.24,2.24,0,0,1,.78.44,1.94,1.94,0,0,1,.58.81,2.67,2.67,0,0,1,.95-1.06A2.59,2.59,0,0,1,66.92,16a3.45,3.45,0,0,1,1.07.15,1.94,1.94,0,0,1,.77.44,3,3,0,0,1,.5.63,2.6,2.6,0,0,1,.29.8,7.3,7.3,0,0,1,.13.86c0,.27,0,.56,0,.89l0,9.76H66.46V19.7q0-1.29-.65-1.29a.65.65,0,0,0-.43.16,1,1,0,0,0-.27.41,2.54,2.54,0,0,0-.12.49,3.09,3.09,0,0,0,0,.47v9.59H61.76V19.7c0-.05,0-.13,0-.23a1.64,1.64,0,0,0,0-.25l0-.23a.74.74,0,0,0-.07-.22l-.11-.17a.37.37,0,0,0-.16-.12.52.52,0,0,0-.21,0,.65.65,0,0,0-.44.16,1,1,0,0,0-.27.43,2.91,2.91,0,0,0-.13.52,3.39,3.39,0,0,0,0,.52v9.43H57.12Z" transform="translate(0 0)" style="fill:#404040"/><path d="M74.94,29.67q-4,0-4-4.16V20.15a4.23,4.23,0,0,1,1.07-3,4.38,4.38,0,0,1,5.85,0,4.22,4.22,0,0,1,1.07,3v5.36a4.29,4.29,0,0,1-1,3.13,4,4,0,0,1-3,1m-.75-10v6.53a1.2,1.2,0,0,0,.21.78.72.72,0,0,0,1.08,0,1.2,1.2,0,0,0,.21-.78V19.64q0-1.17-.75-1.17t-.75,1.17" transform="translate(0 0)" style="fill:#404040"/><path d="M80.22,29.52V16.14h3.19v1.53a2.14,2.14,0,0,1,.73-1.28A2,2,0,0,1,85.43,16a2.46,2.46,0,0,1,2,.79,3.6,3.6,0,0,1,.69,2.43V29.52H84.93v-10a1.57,1.57,0,0,0-.17-.74.57.57,0,0,0-.54-.32.6.6,0,0,0-.39.13.8.8,0,0,0-.24.29,1.72,1.72,0,0,0-.12.43,3.55,3.55,0,0,0-.05.41c0,.09,0,.22,0,.37v9.4Z" transform="translate(0 0)" style="fill:#404040"/><path d="M93.77,20.14l0-.51a2.51,2.51,0,0,0,0-.36,1.84,1.84,0,0,0-.1-.37.69.69,0,0,0-.21-.31.52.52,0,0,0-.34-.12.65.65,0,0,0-.5.19.75.75,0,0,0-.17.52A1.33,1.33,0,0,0,93,20.32l2,1.44a6.76,6.76,0,0,1,1,.92,5,5,0,0,1,.64.88,4,4,0,0,1,.35.85,4.31,4.31,0,0,1,.16.74q0,.28,0,.64A3.72,3.72,0,0,1,96,28.69a4.19,4.19,0,0,1-2.93,1q-4,0-4-4l0-1.06h3.19l0,1.57a1.56,1.56,0,0,0,.08.53.57.57,0,0,0,.21.3.78.78,0,0,0,.24.11,1,1,0,0,0,.25,0q.64,0,.64-1c0-.18,0-.31,0-.39a2.25,2.25,0,0,0-.07-.36,1.17,1.17,0,0,0-.19-.41,4.79,4.79,0,0,0-.37-.44,5.21,5.21,0,0,0-.62-.54l-1.7-1.31a5.94,5.94,0,0,1-.89-.83,2.68,2.68,0,0,1-.5-.86,4,4,0,0,1-.2-.81,8.06,8.06,0,0,1,0-.93,2.78,2.78,0,0,1,.59-1.77,3.46,3.46,0,0,1,1.47-1.1,5.15,5.15,0,0,1,1.9-.35,4,4,0,0,1,2.88,1,3.88,3.88,0,0,1,1,2.94v.25Z" transform="translate(0 0)" style="fill:#404040"/><path d="M98.36,13.83h3.1v2.84H102V19.1h-.57v7.52c0,.11,0,.2,0,.27a1.49,1.49,0,0,0,0,.21.25.25,0,0,0,.1.16.34.34,0,0,0,.19,0,.77.77,0,0,0,.23,0v2.17a5.3,5.3,0,0,1-1.7.23,2.54,2.54,0,0,1-.89-.14,1.61,1.61,0,0,1-.57-.34,1.39,1.39,0,0,1-.32-.52,2.44,2.44,0,0,1-.15-.59,5.65,5.65,0,0,1,0-.63V19.1h-.49V16.67h.49Z" transform="translate(0 0)" style="fill:#404040"/><path d="M106.87,29.68a5.36,5.36,0,0,1-1.29-.15,3.73,3.73,0,0,1-1-.38,2.56,2.56,0,0,1-.69-.6,3.48,3.48,0,0,1-.46-.74,4.24,4.24,0,0,1-.27-.86,7,7,0,0,1-.13-.89q0-.41,0-.91V19.79A3.65,3.65,0,0,1,104.08,17a4.19,4.19,0,0,1,3-1q3.85,0,3.85,3.79v1q0,1.81,0,2.49h-4.63v1.87c0,.06,0,.16,0,.29s0,.24,0,.31a4.72,4.72,0,0,0,0,.55,2.67,2.67,0,0,0,.1.46.65.65,0,0,0,.24.35.67.67,0,0,0,.41.12.53.53,0,0,0,.42-.18,1.1,1.1,0,0,0,.23-.53,4.91,4.91,0,0,0,.08-.61c0-.18,0-.4,0-.67q0-.78,0-.86h3.17v.76a9.13,9.13,0,0,1-.17,1.9,3.94,3.94,0,0,1-.6,1.41,2.6,2.6,0,0,1-1.23.94,5.6,5.6,0,0,1-2,.31M107,18.39a.67.67,0,0,0-.42.13.75.75,0,0,0-.25.39,2.64,2.64,0,0,0-.11.53c0,.18,0,.4,0,.67s0,.31,0,.56,0,.44,0,.56h1.5V19.83c0-1-.24-1.44-.71-1.44" transform="translate(0 0)" style="fill:#404040"/><path d="M112.13,29.52V16.15h3.19v1.49a2.4,2.4,0,0,1,.75-1.28,2,2,0,0,1,1.22-.37,2.42,2.42,0,0,1,1.57.55,1.93,1.93,0,0,1,.68,1.59V22.6h-3.12V19.4a3.09,3.09,0,0,0,0-.41.65.65,0,0,0-.14-.32.41.41,0,0,0-.34-.15.53.53,0,0,0-.41.2.82.82,0,0,0-.18.56V29.52Z" transform="translate(0 0)" style="fill:#404040"/><path d="M120.75,29.52V19.17h-.58q0-.42,0-2.43h.54v-.91a1.91,1.91,0,0,1,2.16-2.16,4.29,4.29,0,0,1,1.64.26v2a1.36,1.36,0,0,0-.29,0,.32.32,0,0,0-.33.17,1.42,1.42,0,0,0-.07.55v.17h.69v2.47h-.63V29.52Z" transform="translate(0 0)" style="fill:#404040"/><path d="M125.66,13.76h3.19v1.57h-3.19Zm0,2.39h3.19V29.52h-3.19Z" transform="translate(0 0)" style="fill:#404040"/><path d="M130.12,25.13V21a6.21,6.21,0,0,1,.94-3.87A3.82,3.82,0,0,1,134.2,16a4.19,4.19,0,0,1,2.8.91,3.1,3.1,0,0,1,1.08,2.5v2.28h-3.25V19.57a1.82,1.82,0,0,0-.15-.8.57.57,0,0,0-.57-.3q-.78,0-.78,1.11v6.48a1.62,1.62,0,0,0,.18.75.66.66,0,0,0,.82.3,1,1,0,0,0,.24-.15.72.72,0,0,0,.21-.34,1.91,1.91,0,0,0,.08-.57l0-2h3.25v2.09A3.29,3.29,0,0,1,137,28.73a4,4,0,0,1-2.77.94,6.1,6.1,0,0,1-1.42-.15,4,4,0,0,1-1.06-.4,2.75,2.75,0,0,1-.74-.62,3.4,3.4,0,0,1-.48-.75,3.93,3.93,0,0,1-.28-.86,6.34,6.34,0,0,1-.13-.88q0-.4,0-.89" transform="translate(0 0)" style="fill:#404040"/><path d="M138.91,25.68a5.36,5.36,0,0,1,.52-2.66A3.46,3.46,0,0,1,141,21.73q.57-.27,2.55-.94v0c0-.19,0-.34,0-.46s0-.25,0-.4,0-.27,0-.36,0-.19,0-.29a2,2,0,0,0,0-.25,1.66,1.66,0,0,0-.06-.19.5.5,0,0,0-.09-.16l-.11-.1a.36.36,0,0,0-.15-.06l-.18,0q-.66,0-.66.73v.9h-3.1c0-.1,0-.25,0-.44a3.77,3.77,0,0,1,.91-2.79,4.24,4.24,0,0,1,3-.89,4.64,4.64,0,0,1,1.33.19,4.27,4.27,0,0,1,1.19.57,2.69,2.69,0,0,1,.89,1,3.38,3.38,0,0,1,.33,1.53V29.51H143.6V28.12a2.12,2.12,0,0,1-.74,1.07,1.91,1.91,0,0,1-1.25.48,3.75,3.75,0,0,1-.85-.09,2.08,2.08,0,0,1-.73-.34,2,2,0,0,1-.6-.69,4.21,4.21,0,0,1-.38-1.16,8.75,8.75,0,0,1-.15-1.71m3.25-1.25V26q0,1.19.71,1.19a.55.55,0,0,0,.34-.11.67.67,0,0,0,.21-.28,1.51,1.51,0,0,0,.1-.33,2,2,0,0,0,0-.33V22.62a2.29,2.29,0,0,0-1.11.77,1.89,1.89,0,0,0-.28,1" transform="translate(0 0)" style="fill:#404040"/><path d="M148.38,13.83h3.1v2.84h.57V19.1h-.57v7.52c0,.11,0,.2,0,.27a1.49,1.49,0,0,0,0,.21.25.25,0,0,0,.1.16.34.34,0,0,0,.19,0,.78.78,0,0,0,.23,0v2.17a5.31,5.31,0,0,1-1.7.23,2.54,2.54,0,0,1-.89-.14,1.62,1.62,0,0,1-.57-.34,1.41,1.41,0,0,1-.32-.52,2.48,2.48,0,0,1-.15-.59,5.9,5.9,0,0,1,0-.63V19.1h-.49V16.67h.49Z" transform="translate(0 0)" style="fill:#404040"/><path d="M153.3,13.76h3.19v1.57H153.3Zm0,2.39h3.19V29.52H153.3Z" transform="translate(0 0)" style="fill:#404040"/><path d="M161.77,29.67q-4,0-4-4.16V20.15a4.22,4.22,0,0,1,1.07-3,4.38,4.38,0,0,1,5.85,0,4.23,4.23,0,0,1,1.07,3v5.36a4.29,4.29,0,0,1-1,3.13,4,4,0,0,1-3,1m-.75-10v6.53a1.19,1.19,0,0,0,.21.78.72.72,0,0,0,1.08,0,1.18,1.18,0,0,0,.21-.78V19.64q0-1.17-.75-1.17T161,19.64" transform="translate(0 0)" style="fill:#404040"/><path d="M167.06,29.52V16.14h3.19v1.53A2.14,2.14,0,0,1,171,16.4a2,2,0,0,1,1.29-.41,2.46,2.46,0,0,1,2,.79,3.6,3.6,0,0,1,.69,2.43V29.52h-3.15v-10a1.55,1.55,0,0,0-.17-.74.57.57,0,0,0-.54-.32.6.6,0,0,0-.39.13.81.81,0,0,0-.24.29,1.76,1.76,0,0,0-.12.43,3.11,3.11,0,0,0,0,.41c0,.09,0,.22,0,.37v9.4Z" transform="translate(0 0)" style="fill:#404040"/></g></svg>
+        </span>
     </div>
-{{ form_end(form) }}
+</nav>
+
+<div class="login-wrapper">
+
+    {% trans_default_domain 'FOSUserBundle' %}
+
+    <form name="fos_user_registration_form" method="post" action="/register/">
+
+        <span class="input input--hoshi">
+            <input class="input__field input__field--hoshi" type="email" id="fos_user_registration_form_email" name="fos_user_registration_form[email]" required="required"/>
+            <label class="input__label input__label--hoshi input__label--hoshi-color-2" for="fos_user_registration_form_email">
+                <span class="input__label-content input__label-content--hoshi">Email</span>
+            </label>
+        </span>
+
+        <span class="input input--hoshi">
+            <input class="input__field input__field--hoshi" type="text" id="fos_user_registration_form_username" name="fos_user_registration_form[username]" required="required" maxlength="180" pattern=".{2,}"/>
+            <label class="input__label input__label--hoshi input__label--hoshi-color-2" for="fos_user_registration_form_username">
+                <span class="input__label-content input__label-content--hoshi">Username</span>
+            </label>
+        </span>
+
+        <span class="input input--hoshi">
+            <input class="input__field input__field--hoshi" type="password" id="fos_user_registration_form_plainPassword_first" name="fos_user_registration_form[plainPassword][first]" required="required"/>
+            <label class="input__label input__label--hoshi input__label--hoshi-color-2" for="fos_user_registration_form_plainPassword_first">
+                <span class="input__label-content input__label-content--hoshi">Password</span>
+            </label>
+        </span>
+
+        <span class="input input--hoshi">
+            <input class="input__field input__field--hoshi" type="password" id="fos_user_registration_form_plainPassword_second" name="fos_user_registration_form[plainPassword][second]" required="required"/>
+            <label class="input__label input__label--hoshi input__label--hoshi-color-2" for="fos_user_registration_form_plainPassword_second">
+                <span class="input__label-content input__label-content--hoshi">Confirm password</span>
+            </label>
+        </span>
+
+        <span class="input input--hoshi">
+            <input class="input__field input__field--hoshi" type="text" id="fos_user_registration_form_nickname" name="fos_user_registration_form[nickname]" required="required" maxlength="255" pattern=".{3,}"/>
+            <label class="input__label input__label--hoshi input__label--hoshi-color-2" for="fos_user_registration_form_nickname">
+                <span class="input__label-content input__label-content--hoshi">Nickname</span>
+            </label>
+        </span>
+
+        {{ form_widget(form._token) }}
+
+        <div class="form-action text-right">
+            <a class="form-action-register" href="/login">Log in</a>
+            <input value="Register" type="submit">
+        </div>
+    </form>
+
+</div>
+
+<script src="/assets/js/classie.js"></script>
+<script>
+    (function() {
+        // trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim
+        if (!String.prototype.trim) {
+            (function() {
+                // Make sure we trim BOM and NBSP
+                var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+                String.prototype.trim = function() {
+                    return this.replace(rtrim, '');
+                };
+            })();
+        }
+
+        [].slice.call( document.querySelectorAll( 'input.input__field' ) ).forEach( function( inputEl ) {
+            // in case the input is already filled..
+            if( inputEl.value.trim() !== '' ) {
+                classie.add( inputEl.parentNode, 'input--filled' );
+            }
+
+            // events:
+            inputEl.addEventListener( 'focus', onInputFocus );
+            inputEl.addEventListener( 'blur', onInputBlur );
+        } );
+
+        function onInputFocus( ev ) {
+            classie.add( ev.target.parentNode, 'input--filled' );
+        }
+
+        function onInputBlur( ev ) {
+            if( ev.target.value.trim() === '' ) {
+                classie.remove( ev.target.parentNode, 'input--filled' );
+            }
+        }
+    })();
+</script>

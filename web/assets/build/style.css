@@ -7659,6 +7659,12 @@ input[type='submit'] {
   font-size: 14px;
   padding: 10px 40px;
 }
+.btn,
+input[type='submit'] {
+  border-radius: 22px;
+  font-size: 14px;
+  padding: 10px 40px;
+}
 .header {
   background: #fff;
   margin-bottom: 30px;
