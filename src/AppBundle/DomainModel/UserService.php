@@ -28,9 +28,21 @@ class UserService
         return $this->entityManager->getRepository(User::class)->findAll();
     }
 
-    public function getById(int $id)
+    /**
+     * @param int $id
+     * @return null|object
+     */
+    public function find($id)
     {
         return $this->entityManager->getRepository(User::class)->find($id);
+    }
+
+    public function getByEmail($email)
+    {
+        return $this->entityManager->getRepository(User::class)->findOneBy(
+            ['email' => $email]
+        );
+
     }
 
 }

@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>USER LIST</h1>
+    <h1>ASSIGN BADGES TO USER</h1>
 
     {% block header_navigation_links %}
         <li>
@@ -27,15 +27,15 @@
         </tr>
         </thead>
         <tbody>
-        {% for user in users %}
+        {% for badge in badges %}
             <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.username }}</td>
-                <td>{{ user.email }}</td>
-                <td>
+                <td>{{ badge.id }}</td>
+                <td>{{ badge.name }}</td>
+                <td>{{ badge.description }}</td>
+                <td class="text-right">
                     <div>
-                        <a href="{{ path('admin_panel_user_badge_index', {userId: user.id}) }}">
-                            <i class="fa fa-eye" aria-hidden="true"></i> {{ 'action.assign_badge'|trans }}
+                        <a href="{{ path('admin_panel_user_badge_activate', {'userId': user_id, 'badgeId': badge.id}) }}">
+                            <i></i> {{ 'action.activate'|trans }}
                         </a>
                     </div>
                 </td>

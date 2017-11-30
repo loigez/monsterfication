@@ -20,8 +20,9 @@ class GitLabHooksController extends Controller
             return $this->json('Not authorized', Response::HTTP_UNAUTHORIZED);
         }
 
-//        $gitlabService = $this->get('');
-
+        $gitlabService = $this->get('git_lab_hook.service');
+        $gitlabService->parseGitLabHook($request->getContent());
+        $gitlabService->applyBadgeRules();
         return $this->json('OK');
     }
 }

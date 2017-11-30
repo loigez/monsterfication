@@ -4,18 +4,29 @@
 namespace AppBundle\Repository;
 
 
+use AppBundle\Entity\Badge;
+use AppBundle\Entity\User;
 use Doctrine\ORM\EntityRepository;
 
 class UserBadgeProgressRepository extends EntityRepository
 {
 
-    public function findAllOrderedByName()
+    /**
+     * @param Badge $badge
+     * @param User $user
+     * @return array
+     */
+    public function findBadgeProgressForUser(Badge $badge, User $user)
     {
-        return $this->getEntityManager()
-            ->createQuery(
-                'SELECT m FROM AppBundle:Monsters m ORDER BY m.name ASC'
-            )
-            ->getResult();
+        $query = $this->getEntityManager()->createQuery(
+            'SELECT ubp
+             FROM AppBundle:UserBadgeProgress ubp
+             WHERE ubp.user = :userToFind
+             AND ubp.badge = :badgeToFind'
+        )->setParameter('userToFind', $user)
+            ->setParameter('badgeToFind', $badge);
+
+        return $query->getSingleResult();
     }
 
 }
