@@ -6,7 +6,7 @@ namespace AppBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 
-class MonstersRepository extends EntityRepository
+class UserRepository extends EntityRepository
 {
 
     public function findAllOrderedByName()
