@@ -4,7 +4,7 @@
  * Copyright 2011-2017 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700&subset=latin-ext');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&subset=latin-ext');
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
@@ -7642,6 +7642,15 @@ a.text-dark:hover {
   visibility: hidden !important;
 }
 /*# sourceMappingURL=bootstrap.min.css.map */
+a:hover {
+  text-decoration: none;
+}
+img {
+  max-width: 100%;
+}
+.avatar {
+  border-radius: 50%;
+}
 .header {
   background: #fff;
   margin-bottom: 30px;
@@ -7649,6 +7658,38 @@ a.text-dark:hover {
 }
 .header .navbar-brand {
   font-weight: 700;
+}
+.profile {
+  list-style: none;
+}
+.profile-content {
+  left: auto;
+  right: 0;
+}
+.profile-avatar {
+  margin-left: 10px;
+}
+.profile .dropdown-toggle {
+  color: #000;
+}
+.profile .dropdown-toggle::after {
+  display: none;
+}
+.profile .dropdown-toggle span {
+  margin-right: 3px;
+}
+.navbar-login {
+  width: 305px;
+  padding: 10px;
+  padding-bottom: 0px;
+}
+.navbar-login-session {
+  padding: 10px;
+  padding-bottom: 0px;
+  padding-top: 0px;
+}
+.icon-size {
+  font-size: 87px;
 }
 .mf-badge {
   display: flex;
@@ -7718,6 +7759,56 @@ a.text-dark:hover {
 .mf-badge-locked .mf-badge-content-title,
 .mf-badge-locked .mf-badge-content-desc {
   color: #909090;
+}
+.widget-title {
+  color: #909090;
+  font-size: 14px;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+}
+.stream-item {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #dfdfdf;
+  margin-bottom: 20px;
+}
+.stream-item-avatar img {
+  border-radius: 50%;
+}
+.stream-item-content {
+  margin-left: 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.stream-item-content-title {
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+.stream-item-content-desc {
+  font-size: 12px;
+}
+.stream-item-content-desc strong {
+  font-weight: 700;
+}
+.stream-item-date {
+  font-size: 12px;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  align-items: right;
+  justify-content: center;
+  color: #909090;
+}
+.content-main {
+  padding-right: 40px;
+}
+.content-sidebar {
+  padding-left: 20px;
 }
 body {
   background: #f3f3f3;
