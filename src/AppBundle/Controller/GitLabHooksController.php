@@ -2,10 +2,10 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Monsters;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class GitLabHooksController extends Controller
 {
@@ -14,10 +14,14 @@ class GitLabHooksController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $gitlabToken = $this->getParameter('gitlab_token');
+        $clientToken = $request->headers->get('X-Gitlab-Token');
+        if ($gitlabToken !== $clientToken) {
+            return $this->json('Not authorized', Response::HTTP_UNAUTHORIZED);
+        }
 
-        // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-        ]);
+//        $gitlabService = $this->get('');
+
+        return $this->json('OK');
     }
 }

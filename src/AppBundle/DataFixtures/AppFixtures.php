@@ -10,6 +10,13 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class AppFixtures extends Fixture
 {
+    const ICONS = [
+        'baby_step',
+        'lock',
+        'monster_insomnia_2017',
+        'run_forest_run',
+    ];
+
     const BADGES = [
         ['description' => 'Make Your first commit (0/1) ', 'name' => 'Baby steps'],
         ['description' => 'Make 100 commits (0/100) ', 'name' => 'Good job youngster!'],
@@ -19,7 +26,10 @@ class AppFixtures extends Fixture
         ['description' => 'Be not the only one contributor of the task (0/10) ', 'name' => 'Multiplayer'],
         ['description' => 'Push more than one commit at once (0/100) ', 'name' => 'Combo Breaker'],
         ['description' => 'Make commit at night (22 - 6) (0/10) ', 'name' => 'Owl'],
-        ['description' => 'Make commit everyday through whole month (Mon - Fri) ', 'name' => 'Employee of the month ;)'],
+        [
+            'description' => 'Make commit everyday through whole month (Mon - Fri) ',
+            'name' => 'Employee of the month ;)'
+        ],
         ['description' => 'Make commit after 30 days of inactivity ', 'name' => 'Welcome back!'],
         ['description' => 'Make 1000 commits in project GRREDISIGN ', 'name' => 'New World Order'],
         ['description' => 'Make 1000 commits in project GRBACKEND ', 'name' => 'Dungeon Keeper'],
@@ -52,6 +62,8 @@ class AppFixtures extends Fixture
             $badge->setName($badgeItem['name']);
             $badge->setDescription($badgeItem['description']);
             $badge->setRule('AddByHandRule');
+            $badge->setTarget(100);
+            $badge->setIconName(self::ICONS[random_int(0, count(self::ICONS) - 1)]);
             $this->addReference('badge-progress-' . $id, $badge);
             $manager->persist($badge);
         }

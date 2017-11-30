@@ -33,6 +33,12 @@ class Badge
     private $description;
 
     /**
+     * @ORM\Column(type="integer")
+     * @var int
+     */
+    private $target;
+
+    /**
      * @ORM\Column(type="string", length=1024)
      * @var string
      */
@@ -143,9 +149,25 @@ class Badge
      */
     public function setIconName($iconName)
     {
-        $this->IconName = $iconName;
+        $this->iconName = $iconName;
     }
 
+
+    /**
+     * @return int
+     */
+    public function getTarget()
+    {
+        return $this->target;
+    }
+
+    /**
+     * @param int $target
+     */
+    public function setTarget($target)
+    {
+        $this->target = $target;
+    }
 
 
 }
