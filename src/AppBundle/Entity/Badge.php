@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\OneToMany;
 
 /**
  * @ORM\Entity
@@ -18,16 +19,25 @@ class Badge
      * @var int
      */
     private $id;
+
     /**
      * @ORM\Column(type="string", length=256)
      * @var string
      */
     private $name;
+
     /**
      * @ORM\Column(type="text")
      * @var string
      */
     private $description;
+
+    /**
+     * One Badge has Many UserBadgeProgresses.
+     * @OneToMany(targetEntity="UserBadgeProgress", mappedBy="badge")
+     */
+    private $userBadgeProgresses;
+
     /**
      * @ORM\Column(type="string", length=256)
      * @var string
@@ -83,6 +93,22 @@ class Badge
     }
 
     /**
+     * @return mixed
+     */
+    public function getUserBadgeProgresses()
+    {
+        return $this->userBadgeProgresses;
+    }
+
+    /**
+     * @param mixed $userBadgeProgresses
+     */
+    public function setUserBadgeProgresses($userBadgeProgresses)
+    {
+        $this->userBadgeProgresses = $userBadgeProgresses;
+    }
+
+    /**
      * @return string
      */
     public function getRule(): string
@@ -97,5 +123,6 @@ class Badge
     {
         $this->rule = $rule;
     }
+
 
 }

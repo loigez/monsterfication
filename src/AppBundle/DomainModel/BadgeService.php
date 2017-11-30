@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\DomainModel;
 
+use AppBundle\Entity\Badge;
 use Doctrine\ORM\EntityManagerInterface;
 
 class BadgeService
@@ -18,7 +19,23 @@ class BadgeService
     public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
-        //repository
+    }
+
+    /**
+     *
+     */
+    public function findAll()
+    {
+        return $this->entityManager->getRepository(Badge::class)->findAll();
+    }
+
+    /**
+     * @param Badge $badge
+     */
+    public function save(Badge $badge)
+    {
+        $this->entityManager->persist($badge);
+        $this->entityManager->flush();
     }
 
 }

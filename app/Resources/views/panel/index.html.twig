@@ -1,14 +1,65 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container">
-        <div id="welcome">
-            <h1>PANEL</h1>
-        </div>
+    <h1>BADGES LIST</h1>
 
-        {{ form_start(badge_form) }}
-        {{ form_widget(badge_form) }}
-        {{ form_end(badge_form) }}
+    {% block header_navigation_links %}
+        <li>
+            <a href="{{ path('admin_panel_index') }}">
+                <i class="fa fa-home" aria-hidden="true"></i> {{ 'menu.index'|trans }}
+            </a>
+        </li>
 
-    </div>
+        <li>
+            <a href="{{ path('admin_panel_user_assign_badge') }}">
+                <i class="fa fa-list-alt" aria-hidden="true"></i> {{ 'menu.assign_badge'|trans }}
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('admin_panel_badge_add') }}">
+                <i class="fa fa-home" aria-hidden="true"></i> {{ 'menu.add_badge'|trans }}
+            </a>
+        </li>
+    {% endblock %}
+
+    <table>
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">NAME</th>
+            <th scope="col">DESCRIPTION</th>
+            <th scope="col">ACTION</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for badge in badges %}
+            <tr>
+                <td>{{ badge.id }}</td>
+                <td>{{ badge.name }}</td>
+                <td>{{ badge.description }}</td>
+                <td></td>
+
+                <!--
+                <td class="text-right">
+                    <div class="item-actions">
+                        <a href="{*{ path('admin_post_show', {id: post.id}) }}" class="btn btn-sm btn-default">
+                            <i class="fa fa-eye" aria-hidden="true"></i> {*{ 'action.show'|trans }}
+                        </a>
+
+                        <a href="{*{ path('admin_post_edit', {id: post.id}) }}" class="btn btn-sm btn-primary">
+                            <i class="fa fa-edit" aria-hidden="true"></i> {*{ 'action.edit'|trans }}
+                        </a>
+                    </div>
+                </td>
+                -->
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4" align="center">NOT FOUND</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
+

@@ -2,7 +2,9 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\OneToMany;
 use FOS\UserBundle\Model\User as BaseUser;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -19,6 +21,13 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
+    /**
+     * One User has Many UserBadgeProgresses.
+     * @OneToMany(targetEntity="UserBadgeProgress", mappedBy="user")
+     * @var ArrayCollection
+     */
+    private $userBadgeProgresses;
     /**
      * @ORM\Column(type="string", length=512)
      *
@@ -40,6 +49,7 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
+        $this->userBadgeProgresses = new ArrayCollection();
     }
 
     /**
@@ -59,21 +69,52 @@ class User extends BaseUser
     }
 
     /**
-     * @return int
+     * @return mixed
      */
-    public function getRole(): int
+    public function getAllProgressBadges()
     {
-        return $this->role;
+        return $this->userBadgeProgresses;
     }
 
     /**
-     * @param int $role
+     * @param mixed $userBadgeProgresses
      */
-    public function setRole(int $role)
+    public function setAllProgressBadges($userBadgeProgresses)
     {
-        $this->role = $role;
+        $this->userBadgeProgresses = $userBadgeProgresses;
     }
 
+    /**
+     * @return UserBadgeProgress
+     */
+    public function getProgressById(int $progressId)
+    {
+        return $this->userBadgeProgresses->get($progressId);
+    }
+
+    /**
+     * @param UserBadgeProgress $userBadgeProgresses
+     */
+    public function addProgress($userBadgeProgresses)
+    {
+        $this->userBadgeProgresses->set($userBadgeProgresses->getId(), $userBadgeProgresses);
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param string $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
 
     /**
      * @return string
