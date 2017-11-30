@@ -27,4 +27,9 @@ class UserService
         return $this->entityManager->getRepository(User::class)->findAll();
     }
 
+    public function getById(int $id)
+    {
+        return $this->entityManager->getRepository(User::class)->find($id);
+    }
+
 }

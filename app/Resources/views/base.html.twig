@@ -15,7 +15,7 @@
                 <ul class="profile navbar-right">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <span>Storm_Trooper</span>
+                            <span>{{ user.nickname}}</span>
                             <img src="/assets/images/arrow-down.png" alt="">
                             <img class="profile-avatar avatar" src="/assets/images/avatar2.png" alt="">
                         </a>
@@ -29,8 +29,8 @@
                                             </p>
                                         </div>
                                         <div class="col-lg-8">
-                                            <p class="text-left"><strong>Pablo Escobar</strong></p>
-                                            <p class="text-left small">pablo_escobar@email.com</p>
+                                            <p class="text-left"><strong>{{ user.username}}</strong></p>
+                                            <p class="text-left small">{{ user.email}}</p>
                                         </div>
                                     </div>
                                 </div>
