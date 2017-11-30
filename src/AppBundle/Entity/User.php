@@ -3,40 +3,44 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\User as BaseUser;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="user")
+ * @ORM\Table(name="`user`")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
-class User
+class User extends BaseUser
 {
     /**
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
-    /**
-     * @ORM\Column(type="string", length=512)
-     * @var string
-     */
-    private $email;
+    protected $id;
     /**
      * @ORM\Column(type="string", length=512)
      * @var int
      */
-    private $role;
+    protected $role;
     /**
      * @ORM\Column(type="string", length=512)
      * @var string
      */
-    private $userName;
+    protected $userName;
     /**
      * @ORM\Column(type="string", length=512)
      * @var string
      */
-    private $nickname;
+    protected $nickname;
+
+    /**
+     * User constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
     /**
      * @return mixed
@@ -63,14 +67,6 @@ class User
     }
 
     /**
-     * @param string $email
-     */
-    public function setEmail(string $email)
-    {
-        $this->email = $email;
-    }
-
-    /**
      * @return int
      */
     public function getRole(): int
@@ -92,14 +88,6 @@ class User
     public function getUserName(): string
     {
         return $this->userName;
-    }
-
-    /**
-     * @param string $userName
-     */
-    public function setUserName(string $userName)
-    {
-        $this->userName = $userName;
     }
 
     /**

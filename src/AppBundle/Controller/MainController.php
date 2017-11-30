@@ -17,7 +17,6 @@ class MainController extends Controller
 
         $user = $this->get('user.service');
 
-        var_dump($user->getAll());
 
         // replace this example code with whatever you need
         return $this->render('default/index.html.twig', [
