@@ -5,6 +5,7 @@ namespace AppBundle\DataFixtures;
 use AppBundle\Entity\Badge;
 use AppBundle\Entity\User;
 use AppBundle\Entity\UserBadgeProgress;
+use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
@@ -87,7 +88,10 @@ class AppFixtures extends Fixture
                 $progress = new UserBadgeProgress();
                 $progress->setBadge($this->getReference('badge-progress-' . $b));
                 $progress->setUser($this->getReference('user-progress-' . $i));
-                $progress->setState(random_int(1, 3));
+                $progress->setState(random_int(1, 2));
+                if ($progress->isUnlocked()) {
+                    $progress->setUnlockDate(new DateTime());
+                }
                 $progress->setProgress(random_int(1, 100));
                 $manager->persist($progress);
             }

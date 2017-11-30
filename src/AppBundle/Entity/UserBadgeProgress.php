@@ -2,10 +2,10 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
+use \DateTime;
 
 /**
  * @ORM\Entity
@@ -47,6 +47,28 @@ class UserBadgeProgress
      * @var int
      */
     private $progress;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     * @var DateTime
+     */
+    private $unlockDate;
+
+    /**
+     * @return DateTime
+     */
+    public function getUnlockDate()
+    {
+        return $this->unlockDate;
+    }
+
+    /**
+     * @param DateTime $date
+     */
+    public function setUnlockDate($date)
+    {
+        $this->unlockDate = $date;
+    }
 
     /**
      * @return int
