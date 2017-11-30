@@ -23,6 +23,8 @@ class MainController extends Controller
         return $this->render('default/index.html.twig',
             [
                 'allBadgesWithProgress' => $allProgressBadges
+                //'activityProgress' => $allProgressBadges
+                //'topTen' => $allProgressBadges
             ]);
     }
 }
