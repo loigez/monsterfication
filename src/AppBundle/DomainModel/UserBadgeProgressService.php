@@ -44,6 +44,24 @@ class UserBadgeProgressService
     }
 
     /**
+     * @param User[] $user
+     * @param Badge $badges
+     */
+    public function assignBadgeToUsers(array $users, Badge $badge)
+    {
+        foreach ($users as $user) {
+            $badgesToUser = new UserBadgeProgress();
+            $badgesToUser->setUser($user);
+            $badgesToUser->setState(State::LOCKED);
+            $badgesToUser->setProgress(0);
+            $badgesToUser->setBadge($badge);
+            $this->entityManager->persist($badgesToUser);
+        }
+
+        $this->entityManager->flush();
+    }
+
+    /**
      * @param int $id
      */
     public function activateUsersBadge($id)
