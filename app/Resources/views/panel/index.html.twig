@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div id="welcome">
+            <h1>PANEL</h1>
+        </div>
+
+        {{ form_start(badge_form) }}
+        {{ form_widget(badge_form) }}
+        {{ form_end(badge_form) }}
+
+    </div>
+{% endblock %}

@@ -65,6 +65,8 @@ swiftmailer:
     spool: { type: memory }
 
 fos_user:
+    service:
+      mailer: fos_user.mailer.noop
     db_driver: orm
     firewall_name: main
     user_class: AppBundle\Entity\User
@@ -74,3 +76,6 @@ fos_user:
     registration:
       form:
         type: AppBundle\Form\RegistrationType
+      confirmation:
+        enabled: false
+

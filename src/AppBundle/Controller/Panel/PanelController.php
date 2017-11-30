@@ -2,9 +2,12 @@
 
 namespace AppBundle\Controller\Panel;
 
+use AppBundle\Entity\Badge;
 use AppBundle\Entity\Monsters;
+use AppBundle\Form\BadgeType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 
 class PanelController extends Controller
@@ -14,15 +17,15 @@ class PanelController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $monsters = $this->getDoctrine()
-            ->getRepository(Monsters::class)
-            ->findAllOrderedByName();
+        $badge = new Badge();
+        $form = $this->createForm(BadgeType::class, $badge);
+        $form->add('submit', SubmitType::class, array(
+            'label' => 'Create badge',
+        ));
 
-        var_dump($monsters);
-
-        // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', [
+        return $this->render('panel/index.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+            'badge_form' => $form->createView()
         ]);
     }
 }
