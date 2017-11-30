@@ -1,16 +1,14 @@
 <?php
+
 namespace AppBundle\DomainModel;
 
-use AppBundle\Entity\User;
-use Doctrine\ORM\EntityManagerInterface;
+use AppBundle\Entity\Rules\FirstCommitRule;
+use AppBundle\Entity\UserBadgeProgress;
+use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
 
 class GitLabHookService
 {
-
-    /**
-     * @var EntityManagerInterface
-     */
-    private $entityManager;
     /**
      * @var UserService
      */
@@ -19,24 +17,64 @@ class GitLabHookService
      * @var BadgeService
      */
     private $badgeService;
+    /**
+     * @var ArrayCollection
+     */
+    private $commitCollection;
+    /**
+     * @var UserBadgeProgressService
+     */
+    private $userBadgeProgressService;
 
     /**
      * BadgeService constructor.
      */
-    public function __construct(UserService $userService, BadgeService $badgeService)
+    public function __construct(UserService $userService, UserBadgeProgressService $userBadgeProgressService)
     {
         $this->userService = $userService;
-        $this->badgeService = $badgeService;
+        $this->userBadgeProgressService = $userBadgeProgressService;
     }
 
-    public function findAll()
+    public function parseGitLabHook(string $payload)
     {
-        return $this->entityManager->getRepository(User::class)->findAll();
+        $json = json_decode($payload, true);
+        $collection = new ArrayCollection();
+        foreach ($json['commits'] as $commitItem) {
+            if (preg_match('/^(\w+)-(\d+)\s+/', $commitItem['message'], $matches) === 0) {
+                continue;
+            }
+            $collection->add(new Commit(
+                $commitItem['id'],
+                DateTime::createFromFormat(DateTime::ATOM, $commitItem['timestamp']),
+                $commitItem['author']['email'],
+                $matches[1][0],
+                $matches[2][0]
+            ));
+
+        }
+
+        $this->commitCollection = $collection;
     }
 
-    public function getById(int $id)
+    public function applyBadgeRules()
     {
-        return $this->entityManager->getRepository(User::class)->find($id);
+        /**
+         * @var Commit $commit
+         */
+        foreach ($this->commitCollection->getIterator() as $commit) {
+            $user = $this->userService->getByEmail($commit->getEmail());
+            foreach ($user->getAllProgressBadges() as $progressBadge) {
+                /**
+                 * @var UserBadgeProgress $progressBadge
+                 */
+                if ($progressBadge->isUnlocked()) {
+                    continue;
+                }
+//                $ruleName = $progressBadge->getBadge()->getRule();
+                $rule = new FirstCommitRule($progressBadge, $commit);
+                $this->userBadgeProgressService->persist($progressBadge);
+            }
+        }
     }
 
 }

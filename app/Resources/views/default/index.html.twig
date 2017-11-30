@@ -37,7 +37,19 @@
                 </div>
 
                 {% for badgeWithProgress in allBadgesWithProgress %}
-                    <div class="mf-badge mf-badge-locked">
+
+                    {% set class='' %}
+                    {% if badgeWithProgress.state != stateCompleted %}
+                        {% set class = 'class="mf-badge mf-badge-locked"' %}
+                    {% else %}
+                        {% set class = 'class="mf-badge mf-badge-unlocked"' %}
+                    {% endif %}
+
+                    {# BADGE PERCENT #}
+
+                    {% set badgetPogressPercent = badgeWithProgress.progress / badgeWithProgress.badge.target * 100 %}
+
+                    <div {{ class|raw }}>
                         <div class="mf-badge-icon">
                             {% if badgeWithProgress.state != stateCompleted %}
                                 {% embed '@app_views/components/icons.twig' with { icon: 'lock' } %}{% endembed %}
@@ -50,10 +62,10 @@
                             <p class="mf-badge-content-desc">{{ badgeWithProgress.badge.description }}</p>
                             {% if badgeWithProgress.state != stateCompleted %}
                                 <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: {{ badgeWithProgress.progress }}%" aria-valuenow="{{ badgeWithProgress.progress }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar" role="progressbar" style="width: {{ badgetPogressPercent }}%" aria-valuenow="{{ badgeWithProgress.progress }}" aria-valuemin="0" aria-valuemax="{{ badgeWithProgress.badge.target }}"></div>
                                 </div>
                                 <div class="progress-value">
-                                    {{ badgeWithProgress.progress }}/100
+                                    {{ badgeWithProgress.progress }}/{{ badgeWithProgress.badge.target }}
                                 </div>
                             {% endif %}
                         </div>
