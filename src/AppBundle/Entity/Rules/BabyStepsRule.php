@@ -3,9 +3,10 @@
 namespace AppBundle\Entity\Rules;
 
 use AppBundle\DomainModel\Commit;
+use AppBundle\Entity\State;
 use AppBundle\Entity\UserBadgeProgress;
 
-class FirstCommitRule
+class BabyStepsRule
 {
     /**
      * @var UserBadgeProgress
@@ -17,7 +18,7 @@ class FirstCommitRule
     private $commit;
 
     /**
-     * FirstCommitRule constructor.
+     * BabyStepsRule constructor.
      * @param UserBadgeProgress $progressBadge
      * @param Commit $commit
      */
@@ -27,9 +28,11 @@ class FirstCommitRule
         $this->commit = $commit;
     }
 
-    public function updateProgress()
+    public function updateProgress(): UserBadgeProgress
     {
-        return ;
+        $this->progressBadge->setState(State::UNLOCKED);
+        $this->progressBadge->setProgress($this->progressBadge->getBadge()->getTarget());
+        return $this->progressBadge;
     }
 
 

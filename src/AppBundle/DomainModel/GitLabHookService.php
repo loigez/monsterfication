@@ -2,7 +2,7 @@
 
 namespace AppBundle\DomainModel;
 
-use AppBundle\Entity\Rules\FirstCommitRule;
+use AppBundle\Entity\Rules\BabyStepsRule;
 use AppBundle\Entity\UserBadgeProgress;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -70,9 +70,10 @@ class GitLabHookService
                 if ($progressBadge->isUnlocked()) {
                     continue;
                 }
-//                $ruleName = $progressBadge->getBadge()->getRule();
-                $rule = new FirstCommitRule($progressBadge, $commit);
-                $this->userBadgeProgressService->persist($progressBadge);
+                $ruleName = 'AppBundle\Entity\Rules\\' . $progressBadge->getBadge()->getRule();
+                $rule = new $ruleName($progressBadge, $commit);
+
+                $this->userBadgeProgressService->persist($rule->updateProgress());
             }
         }
     }
