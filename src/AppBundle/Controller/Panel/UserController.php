@@ -18,11 +18,12 @@ class UserController extends Controller
      */
     public function indexAction(Request $request)
     {
+
         /** @var UserService $badgeService */
         $userService = $this->get('user.service');
 
         return $this->render('panel/user/index.html.twig', [
-            'users' => $userService->findAll()
+            'users' => $userService->findAll(),
         ]);
 
     }
@@ -43,7 +44,8 @@ class UserController extends Controller
 //            'label' => 'Create badge',
 //        ));
 
-        return $this->render('panel/user/assign_badge.html.twig');
+        return $this->render('panel/user/assign_badge.html.twig',[
+        ]);
 //        return $this->render('panel/add_badge.html.twig', [
 //            //'badge_form' => $form->createView()
 //        ]);

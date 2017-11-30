@@ -33,6 +33,12 @@ class Badge
     private $description;
 
     /**
+     * @ORM\Column(type="string", length=1024)
+     * @var string
+     */
+    private $iconName;
+
+    /**
      * One Badge has Many UserBadgeProgresses.
      * @OneToMany(targetEntity="UserBadgeProgress", mappedBy="badge")
      */
@@ -123,6 +129,23 @@ class Badge
     {
         $this->rule = $rule;
     }
+
+    /**
+     * @return string
+     */
+    public function getIconName()
+    {
+        return $this->iconName;
+    }
+
+    /**
+     * @param string $iconName
+     */
+    public function setIconName($iconName)
+    {
+        $this->IconName = $iconName;
+    }
+
 
 
 }

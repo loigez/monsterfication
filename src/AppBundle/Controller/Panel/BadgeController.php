@@ -8,6 +8,7 @@ use AppBundle\Entity\Badge;
 use AppBundle\Form\BadgeType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -22,7 +23,7 @@ class BadgeController extends Controller
         $badgeService = $this->get('badge.service');
 
         return $this->render('panel/badge/index.html.twig', [
-            'badges' => $badgeService->findAll()
+            'badges' => $badgeService->findAll(),
         ]);
 
     }
@@ -43,12 +44,13 @@ class BadgeController extends Controller
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            /** @var Badge $badge */
             $badgeService->save($form->getData());
             return $this->redirectToRoute('admin_panel_index');
         }
 
         return $this->render('panel/badge/add_badge.html.twig', [
-            'badge_form' => $form->createView()
+            'badge_form' => $form->createView(),
         ]);
     }
 }
