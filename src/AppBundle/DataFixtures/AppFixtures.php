@@ -19,17 +19,21 @@ class AppFixtures extends Fixture
         'grzegorz.laskowski',
         'pawel.basiak',
         'maciej.gerlecki',
-        'lukasz.czajka'
+        'lukasz.czajka',
+        'szymon.grabowski',
+        'daniel.brzezinski',
+        'wojciech.zwiefka',
+        'magdalena.szlek',
     ];
 
     const BADGES = [
         ['description' => 'Make Your first commit', 'name' => 'Baby steps', 'ruleName'=>'BabyStepsRule', 'target'=> 1, 'iconName' => 'baby_step'],
-        ['description' => 'Make 100 commits ', 'name' => 'Good job youngster!', 'ruleName'=>'MakeCommitsNumber', 'target'=> 2, 'iconName' => 'good_job_kid'],
+        ['description' => 'Make 100 commits ', 'name' => 'Good job youngster!', 'ruleName'=>'MakeCommitsNumber', 'target'=> 2, 'iconName' => 'good_job_youngster'],
         ['description' => 'Make 1000 commits ', 'name' => 'Rising star', 'ruleName'=>'MakeCommitsNumber', 'target'=> 3, 'iconName' => 'atomic_commiter'],
         ['description' => 'Make 10000 commits ', 'name' => 'Hero', 'ruleName'=>'MakeCommitsNumber', 'target'=> 4, 'iconName' => 'atomic_commiter'],
         ['description' => 'Make 10 commits to a single task', 'name' => 'Atomic commiter', 'ruleName'=>'FakeRule', 'target'=> 1, 'iconName' => 'atomic_commiter'],
         ['description' => 'Be not the only one contributor of the task', 'name' => 'Multiplayer', 'ruleName'=>'FakeRule', 'target'=> 1, 'iconName' => 'atomic_commiter'],
-        ['description' => 'Push more than one commit at once (0/100) ', 'name' => 'Combo Breaker', 'ruleName'=>'FakeRule', 'target'=> 1, 'iconName' => 'atomic_commiter'],
+        ['description' => 'Push more than one commit at once ', 'name' => 'Combo Breaker', 'ruleName'=>'FakeRule', 'target'=> 1, 'iconName' => 'atomic_commiter'],
         ['description' => 'Make commit at night (22 - 6)', 'name' => 'Owl', 'ruleName'=>'OwlRule', 'target'=> 2, 'iconName' => 'atomic_commiter'],
         [
             'description' => 'Make commit everyday through whole month (Mon - Fri) ',
@@ -43,6 +47,8 @@ class AppFixtures extends Fixture
         ['description' => 'Make 1000 commits in project GRHYDRA ', 'name' => 'Beast Master', 'ruleName'=>'MakeCommitsNumberInGrHydraRule', 'target'=> 2, 'iconName' => 'atomic_commiter'],
         ['description' => 'Make 1000 commits in project GRCRM ', 'name' => 'Dancing with stars', 'ruleName'=>'MakeCommitsNumberInGrCrmRule', 'target'=> 2, 'iconName' => 'atomic_commiter'],
         ['description' => 'Make 1000 commits in project GRAUTOMATION ', 'name' => 'RoboCop', 'ruleName'=>'MakeCommitsNumberInGrAutomationRule', 'target'=> 2, 'iconName' => 'atomic_commiter'],
+        ['description' => 'Make 1000 commits in project GR$IERRA ', 'name' => 'The Wolf of Wall Street', 'ruleName'=>'MakeCommitsNumberInGrSierraRule', 'target'=> 2, 'iconName' => 'atomic_commiter'],
+        ['description' => 'Make 1000 commits in project GRBS ', 'name' => 'Echo locator', 'ruleName'=>'MakeCommitsNumberInGrEchoRule', 'target'=> 2, 'iconName' => 'atomic_commiter'],
         ['description' => 'Finish onboarding ', 'name' => 'Welcome on board!', 'ruleName'=>'FakeRule', 'target'=> 1, 'iconName' => 'atomic_commiter'],
         ['description' => '1st year work anniversay ', 'name' => 'First anniversary', 'ruleName'=>'FakeRule', 'target'=> 1, 'iconName' => 'first_anniversary'],
         ['description' => '3rd year work anniversay ', 'name' => 'Hat trick', 'ruleName'=>'FakeRule', 'target'=> 1, 'iconName' => 'hat_trick'],
@@ -55,6 +61,8 @@ class AppFixtures extends Fixture
         ['description' => 'Participate in Masurian Getaway Party 2017 ', 'name' => 'Masurian Getaway Party 2017', 'ruleName'=>'FakeRule', 'target'=> 1, 'iconName' => 'atomic_commiter'],
         ['description' => 'Participate in Monster\'s Insomnia 2017 ', 'name' => 'Monster\'s Insomnia 2017', 'ruleName'=>'FakeRule', 'target'=> 1, 'iconName' => 'monster_insomnia_2017'],
         ['description' => 'Snap Edit Hashtag winner ', 'name' => 'Photo of the month', 'ruleName'=>'FakeRule', 'target'=> 1, 'iconName' => 'atomic_commiter'],
+        ['description' => 'Pixel perfect project accepted', 'name' => 'Foltyn approved', 'ruleName'=>'FakeRule', 'target'=> 1, 'iconName' => 'foltyn_approve'],
+        ['description' => 'First Rollback ', 'name' => 'We\'ll Try Again Tomorrow!', 'ruleName'=>'FakeRule', 'target'=> 1, 'iconName' => 'atomic_commiter'],
     ];
     const USERS_NUMBER = 5;
     const MAX_USER_BADGES_NUMBER = 6;
@@ -80,7 +88,8 @@ class AppFixtures extends Fixture
             $user->setUsername(self::USERS[$i]);
             $user->setEnabled(true);
             $user->setRoles(['ROLE_ADMIN']);
-            $user->setNickname('nick ' . self::USERS[$i]);
+            list($firstname) = explode('.', self::USERS[$i]);
+            $user->setNickname(ucfirst($firstname));
             $user->setPassword('$2y$13$BOaEVAJskV62ygw5ICSIsuL03oK4oON6.aXHfq4TnTOxG5COe1f7e');
             $this->addReference('user-progress-' . $i, $user);
             $manager->persist($user);
@@ -92,7 +101,8 @@ class AppFixtures extends Fixture
                 $progress = new UserBadgeProgress();
                 $progress->setBadge($this->getReference('badge-progress-' . $badgeIndex));
                 $progress->setUser($this->getReference('user-progress-' . $userIndex));
-                if (5 === $userIndex) {
+
+                if (5 === $userIndex || 'monster_insomnia_2017' === $badge['iconName']) {
                     $progress->setState(State::UNLOCKED);
                     $progress->setProgress($badge['target']);
                 } else {

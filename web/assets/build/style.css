@@ -7644,6 +7644,9 @@ a.text-dark:hover {
   visibility: hidden !important;
 }
 /*# sourceMappingURL=bootstrap.min.css.map */
+a {
+  color: #2893ee;
+}
 a:hover {
   text-decoration: none;
 }
@@ -7664,6 +7667,26 @@ input[type='submit'] {
   border-radius: 22px;
   font-size: 14px;
   padding: 10px 40px;
+}
+.btn-sm {
+  padding: 5px 20px;
+  font-size: 12px;
+}
+.btn-success {
+  color: #fff;
+  background-color: #58bf23;
+  border-color: #58bf23;
+}
+.btn-primary,
+input[type='submit'] {
+  color: #fff;
+  background-color: #2893ee;
+  border-color: #2893ee;
+}
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #2893ee;
 }
 .header {
   background: #fff;
