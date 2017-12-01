@@ -1,29 +1,28 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>BADGES LIST</h1>
+<div class="container">
+    <h1 class="text-center">Badges list</h1>
+    <br>
 
     {% block header_navigation_links %}
-        <li>
-            <a href="{{ path('admin_panel_user_index') }}">
-                <i class="fa fa-home" aria-hidden="true"></i> {{ 'menu.user.index'|trans }}
-            </a>
-        </li>
-
-        <li>
-            <a href="{{ path('admin_panel_badge_index') }}">
-                <i class="fa fa-list-alt" aria-hidden="true"></i> {{ 'menu.badge.index'|trans }}
-            </a>
-        </li>
+        <ul class="nav nav-pills nav-fill">
+            <li class="nav-item">
+                <a class="nav-link active" href="{{ path('admin_panel_badge_index') }}">Badge index</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('admin_panel_user_index') }}">User index</a>
+            </li>
+        </ul>
     {% endblock %}
-
-
-    <a href="{{ path('admin_panel_badge_add') }}">
-        <i class="fa fa-home" aria-hidden="true"></i> {{ 'menu.add_new_badge'|trans }}
-    </a>
-
-
-    <table>
+    <br>
+    <ul class="nav nav-pills nav-fill">
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('admin_panel_badge_add') }}">Add Badge</a>
+        </li>
+    </ul>
+    <br>
+    <table class="table bg-white">
         <thead>
         <tr>
             <th scope="col">ID</th>
@@ -58,5 +57,6 @@
         {% endfor %}
         </tbody>
     </table>
+</div>
 {% endblock %}
 

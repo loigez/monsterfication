@@ -7717,6 +7717,7 @@ input[type='submit'] {
 }
 .mf-badge-unlocked {
   background: #fff;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.05);
 }
 .mf-badge-locked {
   background: #fbfbfb;
@@ -7847,7 +7848,9 @@ input[type='submit'] {
   width: 100%;
   vertical-align: top;
 }
-.input__field {
+.input__field,
+.input__field--hoshi,
+.input__field--hoshi {
   position: relative;
   display: block;
   float: right;
@@ -7900,10 +7903,24 @@ input[type='submit'] {
   color: #ddd;
   font-size: 150%;
 }
+textarea.input__field--hoshi {
+  height: 80px !important;
+}
+.label-textarea {
+  font-size: 12px;
+  font-weight: 700;
+  bottom: 30px;
+  color: #909090;
+  margin-left: 15px;
+  margin-bottom: 0;
+  position: relative;
+  bottom: -25px;
+}
 /* Hoshi */
 .input--hoshi {
   overflow: hidden;
 }
+.input__field--hoshi,
 .input__field--hoshi {
   margin-top: 0;
   padding: 0.85em 15px;
@@ -8000,6 +8017,10 @@ input[type='submit'] {
     transform: translate3d(0, -40%, 0);
   }
 }
+.input__field--hoshi,
+.input__field--hoshi {
+  overflow: hidden;
+}
 .login-wrapper {
   max-width: 570px;
   margin: 0 auto;
@@ -8011,6 +8032,17 @@ input[type='submit'] {
 }
 .login-logo svg {
   max-width: 215px;
+}
+.admin-menu {
+  text-align: center;
+}
+.admin-menu .nav-link {
+  border-bottom: 1px solid #d1c7c7;
+  color: #000;
+  text-transform: uppercase;
+  font-weight: 300;
+  font-size: 18px;
+  padding: 20px;
 }
 body {
   background: #f3f3f3;

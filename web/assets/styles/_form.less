@@ -85,6 +85,20 @@
     font-size: 150%;
 }
 
+textarea.input__field--hoshi {
+    height: 80px !important;
+}
+
+.label-textarea {
+    font-size: 12px;
+    font-weight: 700;
+    bottom: 30px;
+    color: #909090;
+    margin-left: 15px;
+    margin-bottom: 0;
+    position: relative;
+    bottom: -25px;
+}
 
 /* Hoshi */
 .input--hoshi {
@@ -197,4 +211,11 @@
         -webkit-transform: translate3d(0, -40%, 0);
         transform: translate3d(0, -40%, 0);
     }
+}
+
+
+.input__field--hoshi {
+    &:extend(.input__field);
+    &:extend(.input__field--hoshi);
+    overflow: hidden;
 }
