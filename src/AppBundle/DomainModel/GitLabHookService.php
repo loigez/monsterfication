@@ -4,7 +4,7 @@ namespace AppBundle\DomainModel;
 
 use AppBundle\Entity\Rules\BabyStepsRule;
 use AppBundle\Entity\UserBadgeProgress;
-use DateTime;
+use Carbon\Carbon as DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 
 class GitLabHookService

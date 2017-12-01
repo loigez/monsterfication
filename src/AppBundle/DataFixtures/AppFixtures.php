@@ -6,7 +6,6 @@ use AppBundle\Entity\Badge;
 use AppBundle\Entity\State;
 use AppBundle\Entity\User;
 use AppBundle\Entity\UserBadgeProgress;
-use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
@@ -28,33 +27,33 @@ class AppFixtures extends Fixture
     ];
 
     const BADGES = [
-        ['description' => 'Make Your first commit (0/1) ', 'name' => 'Baby steps', 'ruleName'=>'BabyStepsRule', 'target'=> 1],
-        ['description' => 'Make 100 commits (0/100) ', 'name' => 'Good job youngster!', 'ruleName'=>'FakeRule', 'target'=> 1],
-        ['description' => 'Make 1000 commits (0/1000) ', 'name' => 'Rising star', 'ruleName'=>'FakeRule', 'target'=> 1],
-        ['description' => 'Make 10000 commits (0/10000) ', 'name' => 'Hero', 'ruleName'=>'FakeRule', 'target'=> 1],
-        ['description' => 'Make 10 commits to a single task (0/10) ', 'name' => 'Atomic commiter', 'ruleName'=>'FakeRule', 'target'=> 1],
-        ['description' => 'Be not the only one contributor of the task (0/10) ', 'name' => 'Multiplayer', 'ruleName'=>'FakeRule', 'target'=> 1],
+        ['description' => 'Make Your first commit', 'name' => 'Baby steps', 'ruleName'=>'BabyStepsRule', 'target'=> 1],
+        ['description' => 'Make 100 commits ', 'name' => 'Good job youngster!', 'ruleName'=>'MakeCommitsNumber', 'target'=> 2],
+        ['description' => 'Make 1000 commits ', 'name' => 'Rising star', 'ruleName'=>'MakeCommitsNumber', 'target'=> 3],
+        ['description' => 'Make 10000 commits ', 'name' => 'Hero', 'ruleName'=>'MakeCommitsNumber', 'target'=> 4],
+        ['description' => 'Make 10 commits to a single task', 'name' => 'Atomic commiter', 'ruleName'=>'FakeRule', 'target'=> 1],
+        ['description' => 'Be not the only one contributor of the task', 'name' => 'Multiplayer', 'ruleName'=>'FakeRule', 'target'=> 1],
         ['description' => 'Push more than one commit at once (0/100) ', 'name' => 'Combo Breaker', 'ruleName'=>'FakeRule', 'target'=> 1],
-        ['description' => 'Make commit at night (22 - 6) (0/10) ', 'name' => 'Owl', 'ruleName'=>'FakeRule', 'target'=> 1],
+        ['description' => 'Make commit at night (22 - 6)', 'name' => 'Owl', 'ruleName'=>'OwlRule', 'target'=> 2],
         [
             'description' => 'Make commit everyday through whole month (Mon - Fri) ',
             'name' => 'Employee of the month ;)', 'ruleName'=>'FakeRule', 'target'=> 1],
         ['description' => 'Make commit after 30 days of inactivity ', 'name' => 'Welcome back!', 'ruleName'=>'FakeRule', 'target'=> 1],
-        ['description' => 'Make 1000 commits in project GRREDISIGN ', 'name' => 'New World Order', 'ruleName'=>'FakeRule', 'target'=> 1],
-        ['description' => 'Make 1000 commits in project GRBACKEND ', 'name' => 'Dungeon Keeper', 'ruleName'=>'FakeRule', 'target'=> 1],
-        ['description' => 'Make 1000 commits in project GRALPHA ', 'name' => 'Alpha Male', 'ruleName'=>'FakeRule', 'target'=> 1],
-        ['description' => 'Make 1000 commits in project GRBRAVO ', 'name' => 'Bravo Commando', 'ruleName'=>'FakeRule', 'target'=> 1],
-        ['description' => 'Make 1000 commits in project GRAPI ', 'name' => 'Interface Lord', 'ruleName'=>'FakeRule', 'target'=> 1],
-        ['description' => 'Make 1000 commits in project GRHYDRA ', 'name' => 'Beast Master', 'ruleName'=>'FakeRule', 'target'=> 1],
-        ['description' => 'Make 1000 commits in project GRCRM ', 'name' => 'Dancing with stars', 'ruleName'=>'FakeRule', 'target'=> 1],
-        ['description' => 'Make 1000 commits in project GRAUTOMATION ', 'name' => 'RoboCop', 'ruleName'=>'FakeRule', 'target'=> 1],
+        ['description' => 'Make 1000 commits in project GRREDESIGN ', 'name' => 'New World Order', 'ruleName'=>'MakeCommitsNumberInGrRedesignRule', 'target'=> 2],
+        ['description' => 'Make 1000 commits in project GRBACKEND ', 'name' => 'Dungeon Keeper', 'ruleName'=>'MakeCommitsNumberInGrBackendRule', 'target'=> 2],
+        ['description' => 'Make 1000 commits in project GRALPHA ', 'name' => 'Alpha Male', 'ruleName'=>'MakeCommitsNumberInGrAlphaRule', 'target'=> 2],
+        ['description' => 'Make 1000 commits in project GRBRAVO ', 'name' => 'Bravo Commando', 'ruleName'=>'MakeCommitsNumberInGrBravoRule', 'target'=> 2],
+        ['description' => 'Make 1000 commits in project GRAPI ', 'name' => 'Interface Lord', 'ruleName'=>'MakeCommitsNumberInGrApiRule', 'target'=> 2],
+        ['description' => 'Make 1000 commits in project GRHYDRA ', 'name' => 'Beast Master', 'ruleName'=>'MakeCommitsNumberInGrHydraRule', 'target'=> 2],
+        ['description' => 'Make 1000 commits in project GRCRM ', 'name' => 'Dancing with stars', 'ruleName'=>'MakeCommitsNumberInGrCrmRule', 'target'=> 2],
+        ['description' => 'Make 1000 commits in project GRAUTOMATION ', 'name' => 'RoboCop', 'ruleName'=>'MakeCommitsNumberInGrAutomationRule', 'target'=> 2],
         ['description' => 'Finish onboarding ', 'name' => 'Welcome on board!', 'ruleName'=>'FakeRule', 'target'=> 1],
         ['description' => '1st year work anniversay ', 'name' => 'First anniversary', 'ruleName'=>'FakeRule', 'target'=> 1],
         ['description' => '3rd year work anniversay ', 'name' => 'Hat trick', 'ruleName'=>'FakeRule', 'target'=> 1],
         ['description' => '5th year work anniversay ', 'name' => 'Experienced player', 'ruleName'=>'FakeRule', 'target'=> 1],
         ['description' => '10th year work anniversay ', 'name' => 'Mathusalem', 'ruleName'=>'FakeRule', 'target'=> 1],
         ['description' => 'Register first cycling training in GRMondo ', 'name' => 'Tricycle', 'ruleName'=>'FakeRule', 'target'=> 1],
-        ['description' => 'Register first running training in GRMondo ', 'name' => 'Run Forest run!!!', 'ruleName'=>'FakeRule', 'target'=> 1],
+        ['description' => 'Register first running training in GRMondo ', 'name' => 'Run Forrest run!!!', 'ruleName'=>'FakeRule', 'target'=> 1],
         ['description' => 'Register 100 cycling trainings in GRMondo ', 'name' => 'Pro Cyclist', 'ruleName'=>'FakeRule', 'target'=> 1],
         ['description' => 'Register 100 running trainings in GRMondo ', 'name' => 'Pro Runner', 'ruleName'=>'FakeRule', 'target'=> 1],
         ['description' => 'Participate in Masurian Getaway Party 2017 ', 'name' => 'Masurian Getaway Party 2017', 'ruleName'=>'FakeRule', 'target'=> 1],

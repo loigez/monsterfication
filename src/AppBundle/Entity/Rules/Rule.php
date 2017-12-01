@@ -25,4 +25,11 @@ abstract class Rule
         $this->progressBadge = $progressBadge;
         $this->commit = $commit;
     }
+
+    protected function unlockOnTargetAchieved()
+    {
+        if ($this->progressBadge->getProgress() >= $this->progressBadge->getBadge()->getTarget()) {
+            $this->progressBadge->unlockBadge();
+        }
+    }
 }

@@ -167,5 +167,22 @@ class UserBadgeProgress
     }
 
 
+    public function incrementProgressByOne()
+    {
+        $this->incrementProgressBy(1);
+    }
+
+    public function incrementProgressBy(int $increment)
+    {
+        $this->progress += $increment;
+    }
+
+    public function unlockBadge()
+    {
+        $this->setState(State::UNLOCKED);
+        $this->setUnlockDate(new DateTime());
+    }
+
+
 
 }

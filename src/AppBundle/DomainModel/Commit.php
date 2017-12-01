@@ -2,6 +2,8 @@
 
 namespace AppBundle\DomainModel;
 
+use Carbon\Carbon as DateTime;
+
 class Commit
 {
     /**
@@ -9,7 +11,7 @@ class Commit
      */
     private $id;
     /**
-     * @var \DateTime
+     * @var DateTime
      */
     private $date;
     /**
@@ -28,12 +30,12 @@ class Commit
     /**
      * Commit constructor.
      * @param int $id
-     * @param \DateTime $date
+     * @param DateTime $date
      * @param string $email
      * @param string $projectCodeName
      * @param string $taskId
      */
-    public function __construct($id, \DateTime $date, $email, $projectCodeName, $taskId)
+    public function __construct($id, DateTime $date, $email, $projectCodeName, $taskId)
     {
         $this->id = $id;
         $this->date = $date;
@@ -51,9 +53,9 @@ class Commit
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getDate(): \DateTime
+    public function getDate(): DateTime
     {
         return $this->date;
     }
