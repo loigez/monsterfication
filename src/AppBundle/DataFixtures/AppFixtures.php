@@ -19,12 +19,16 @@ class AppFixtures extends Fixture
         'grzegorz.laskowski',
         'pawel.basiak',
         'maciej.gerlecki',
-        'lukasz.czajka'
+        'lukasz.czajka',
+        'szymon.grabowski',
+        'daniel.brzezinski',
+        'wojciech.zwiefka',
+        'magdalena.szlek',
     ];
 
     const BADGES = [
         ['description' => 'Make Your first commit', 'name' => 'Baby steps', 'ruleName'=>'BabyStepsRule', 'target'=> 1, 'iconName' => 'baby_step'],
-        ['description' => 'Make 100 commits ', 'name' => 'Good job youngster!', 'ruleName'=>'MakeCommitsNumber', 'target'=> 2, 'iconName' => 'good_job_kid'],
+        ['description' => 'Make 100 commits ', 'name' => 'Good job youngster!', 'ruleName'=>'MakeCommitsNumber', 'target'=> 2, 'iconName' => 'good_job_youngster'],
         ['description' => 'Make 1000 commits ', 'name' => 'Rising star', 'ruleName'=>'MakeCommitsNumber', 'target'=> 3, 'iconName' => 'atomic_commiter'],
         ['description' => 'Make 10000 commits ', 'name' => 'Hero', 'ruleName'=>'MakeCommitsNumber', 'target'=> 4, 'iconName' => 'atomic_commiter'],
         ['description' => 'Make 10 commits to a single task', 'name' => 'Atomic commiter', 'ruleName'=>'FakeRule', 'target'=> 1, 'iconName' => 'atomic_commiter'],
@@ -55,6 +59,7 @@ class AppFixtures extends Fixture
         ['description' => 'Participate in Masurian Getaway Party 2017 ', 'name' => 'Masurian Getaway Party 2017', 'ruleName'=>'FakeRule', 'target'=> 1, 'iconName' => 'atomic_commiter'],
         ['description' => 'Participate in Monster\'s Insomnia 2017 ', 'name' => 'Monster\'s Insomnia 2017', 'ruleName'=>'FakeRule', 'target'=> 1, 'iconName' => 'monster_insomnia_2017'],
         ['description' => 'Snap Edit Hashtag winner ', 'name' => 'Photo of the month', 'ruleName'=>'FakeRule', 'target'=> 1, 'iconName' => 'atomic_commiter'],
+        ['description' => 'Foltyn approved ', 'name' => 'Pixel perfect project accepted', 'ruleName'=>'FakeRule', 'target'=> 1, 'iconName' => 'foltyn_approve'],
     ];
     const USERS_NUMBER = 5;
     const MAX_USER_BADGES_NUMBER = 6;
@@ -92,7 +97,8 @@ class AppFixtures extends Fixture
                 $progress = new UserBadgeProgress();
                 $progress->setBadge($this->getReference('badge-progress-' . $badgeIndex));
                 $progress->setUser($this->getReference('user-progress-' . $userIndex));
-                if (5 === $userIndex) {
+
+                if (5 === $userIndex || 'monster_insomnia_2017' === $badge['iconName']) {
                     $progress->setState(State::UNLOCKED);
                     $progress->setProgress($badge['target']);
                 } else {
