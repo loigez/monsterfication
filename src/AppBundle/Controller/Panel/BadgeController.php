@@ -85,4 +85,31 @@ class BadgeController extends Controller
         return $this->redirectToRoute('admin_panel_badge_index');
 
     }
+
+    /**
+     * @Route("/panel/badge/edit/{id}", name="admin_panel_badge_edit")
+     */
+    public function editBadgeAction(Request $request)
+    {
+        /** @var BadgeService $badgeService */
+        $badgeService = $this->get('badge.service');
+
+        $badge = $badgeService->find((int)$request->get('id', null));
+        $form = $this->createForm(BadgeType::class, $badge);
+        $form->add('submit', SubmitType::class, array(
+            'label' => 'Edit badge',
+        ));
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var Badge $badge */
+            $badgeService->save($form->getData());
+
+            return $this->redirectToRoute('admin_panel_badge_index');
+        }
+
+        return $this->render('panel/Badge/add_badge.html.twig', [
+            'badge_form' => $form->createView(),
+        ]);
+    }
 }

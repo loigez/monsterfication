@@ -3,7 +3,7 @@
 {% block body %}
     <div class="container">
         <div id="welcome">
-            <h1 class="text-center">Add badge</h1>
+            <h1 class="text-center">Badge details</h1>
         </div>
         <br>
         {% block header_navigation_links %}
@@ -49,7 +49,7 @@
                 </span>
 
                 <span class="input input--hoshi">
-                    <input id="badge_target" name="badge[target]" required="required" class="input__field input__field--hoshi" type="number">
+                    {{ form_widget(badge_form.target, { 'attr': {'class': 'input__field input__field--hoshi'} }) }}
                     <label class="input__label input__label--hoshi input__label--hoshi-color-2" for="badge_target">
                         <span class="input__label-content input__label-content--hoshi">Target</span>
                     </label>
@@ -58,7 +58,7 @@
                 {{ form_widget(badge_form._token) }}
 
                 <div class="text-right">
-                    <button class="btn btn-primary" type="submit" id="badge_submit" name="badge[submit]">Create badge</button>
+                    <button class="btn btn-primary" type="submit" id="badge_submit" name="badge[submit]">Save</button>
                 </div>
 
             </form>
