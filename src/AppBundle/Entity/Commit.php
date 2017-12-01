@@ -1,47 +1,72 @@
 <?php
 
-namespace AppBundle\DomainModel;
+namespace AppBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 use Carbon\Carbon as DateTime;
 
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="commit")
+ */
 class Commit
 {
     /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @var int
      */
     private $id;
     /**
+     * @ORM\Column(type="datetime", nullable=true)
      * @var DateTime
      */
     private $date;
     /**
+     * @ORM\Column(type="string", length=256)
      * @var string
      */
     private $email;
     /**
+     * @ORM\Column(type="string", length=20)
      * @var string
      */
     private $projectCodeName;
     /**
+     * @ORM\Column(type="string", length=20)
      * @var string
      */
     private $taskId;
+    /**
+     * @ORM\Column(type="string", length=80)
+     * @var string
+     */
+    private $commitHash;
 
     /**
      * Commit constructor.
-     * @param int $id
+     * @param string $commitHash
      * @param DateTime $date
      * @param string $email
      * @param string $projectCodeName
      * @param string $taskId
      */
-    public function __construct($id, DateTime $date, $email, $projectCodeName, $taskId)
+    public function __construct($commitHash, DateTime $date, $email, $projectCodeName, $taskId)
     {
-        $this->id = $id;
+        $this->commitHash = $commitHash;
         $this->date = $date;
         $this->email = $email;
         $this->projectCodeName = $projectCodeName;
         $this->taskId = $taskId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCommitHash(): string
+    {
+        return $this->commitHash;
     }
 
     /**
@@ -83,7 +108,6 @@ class Commit
     {
         return $this->taskId;
     }
-
 
 
 }

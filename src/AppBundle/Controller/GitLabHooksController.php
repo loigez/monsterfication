@@ -23,6 +23,7 @@ class GitLabHooksController extends Controller
         $gitlabService = $this->get('git_lab_hook.service');
         $gitlabService->parseGitLabHook($request->getContent());
         $gitlabService->applyBadgeRules();
+
         return $this->json('OK');
     }
 }
