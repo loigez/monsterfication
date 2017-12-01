@@ -88,8 +88,8 @@ class AppFixtures extends Fixture
             $user->setUsername(self::USERS[$i]);
             $user->setEnabled(true);
             $user->setRoles(['ROLE_ADMIN']);
-            list($firstname) = explode('.', self::USERS[$i]);
-            $user->setNickname(ucfirst($firstname));
+            list($firstname, $lastname) = explode('.', self::USERS[$i]);
+            $user->setNickname(ucfirst($firstname) . ucfirst($lastname[0]));
             $user->setPassword('$2y$13$BOaEVAJskV62ygw5ICSIsuL03oK4oON6.aXHfq4TnTOxG5COe1f7e');
             $this->addReference('user-progress-' . $i, $user);
             $manager->persist($user);
