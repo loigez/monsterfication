@@ -18,7 +18,8 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
-            new Ornicar\GravatarBundle\OrnicarGravatarBundle()
+            new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
+            new Wowapps\SlackBundle\WowappsSlackBundle()
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

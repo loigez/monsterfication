@@ -7,6 +7,7 @@ use AppBundle\Entity\Rules\Rule;
 use AppBundle\Entity\UserBadgeProgress;
 use Carbon\Carbon as DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
+use Wowapps\SlackBundle\Service\SlackBot;
 
 class GitLabHookService
 {
@@ -29,22 +30,29 @@ class GitLabHookService
      * @var CommitService
      */
     private $commitService;
+    /**
+     * @var SlackBot
+     */
+    private $slackBot;
 
     /**
      * BadgeService constructor.
      * @param UserService $userService
      * @param UserBadgeProgressService $userBadgeProgressService
      * @param CommitService $commitService
+     * @param SlackBot $slackBot
      */
     public function __construct(
         UserService $userService,
         UserBadgeProgressService $userBadgeProgressService,
-        CommitService $commitService
+        CommitService $commitService,
+        SlackBot $slackBot
     )
     {
         $this->userService = $userService;
         $this->userBadgeProgressService = $userBadgeProgressService;
         $this->commitService = $commitService;
+        $this->slackBot = $slackBot;
     }
 
     public function parseGitLabHook(string $payload)
@@ -92,7 +100,7 @@ class GitLabHookService
                 /**
                  * @var Rule $rule
                  */
-                $rule = new $ruleName($progressBadge, $commit);
+                $rule = new $ruleName($progressBadge, $commit, $this->slackBot);
 
                 $this->userBadgeProgressService->persist($rule->updateProgress());
             }

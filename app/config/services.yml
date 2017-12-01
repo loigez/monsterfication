@@ -40,7 +40,7 @@ services:
       arguments: [ "@doctrine.orm.entity_manager" ]
     git_lab_hook.service:
       class: AppBundle\DomainModel\GitLabHookService
-      arguments: ["@user.service", "@user_badge_progress.service"]
+      arguments: ["@user.service", "@user_badge_progress.service", "@commit.service", "@wowapps.slackbot"]
     user_badge_progress.service:
       class: AppBundle\DomainModel\UserBadgeProgressService
       arguments: [ "@doctrine.orm.entity_manager" ]

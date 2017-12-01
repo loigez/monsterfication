@@ -84,3 +84,14 @@ fos_user:
 ornicar_gravatar:
   size: 75
   default: mm
+
+wowapps_slack:
+    api_url: "https://hooks.slack.com/services/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"
+    default_icon: "http://cdn.wow-apps.pro/slackbot/slack-bot-icon-48.png"
+    default_channel: "monsterfication"
+    quote_color:
+        default: "#607D8B"
+        info: "#2196F3"
+        warning: "#FF5722"
+        success: "#8BC34A"
+        danger: "#F44336"
