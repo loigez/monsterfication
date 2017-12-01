@@ -55,6 +55,28 @@ class UserBadgeProgress
     private $unlockDate;
 
     /**
+     * @ORM\Column(type="datetime", nullable=true)
+     * @var DateTime
+     */
+    private $changeDate;
+
+    /**
+     * @return DateTime
+     */
+    public function getChangeDate(): DateTime
+    {
+        return $this->changeDate;
+    }
+
+    /**
+     * @param DateTime $changeDate
+     */
+    public function setChangeDate(DateTime $changeDate)
+    {
+        $this->changeDate = $changeDate;
+    }
+
+    /**
      * @return DateTime
      */
     public function getUnlockDate()
