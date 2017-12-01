@@ -4,7 +4,7 @@ namespace AppBundle\DomainModel;
 
 use AppBundle\Entity\Rules\BabyStepsRule;
 use AppBundle\Entity\UserBadgeProgress;
-use DateTime;
+use Carbon\Carbon as DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 
 class GitLabHookService
@@ -47,8 +47,8 @@ class GitLabHookService
                 $commitItem['id'],
                 DateTime::createFromFormat(DateTime::ATOM, $commitItem['timestamp']),
                 $commitItem['author']['email'],
-                $matches[1][0],
-                $matches[2][0]
+                $matches[1],
+                $matches[2]
             ));
 
         }

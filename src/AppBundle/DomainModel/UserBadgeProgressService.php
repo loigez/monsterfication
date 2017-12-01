@@ -26,6 +26,13 @@ class UserBadgeProgressService
     }
 
     /**
+     * @return mixed
+     */
+    public function lastActivity()
+    {
+        return $this->entityManager->getRepository(UserBadgeProgress::class)->findLastActivity();
+    }
+    /**
      * @param User $user
      * @param Badge[] $badges
      */
@@ -75,7 +82,6 @@ class UserBadgeProgressService
 
         $badgesToUser->setState(State::UNLOCKED);
         $badgesToUser->setProgress($badge->getTarget());
-        $badgesToUser->setChangeDate(new \DateTime());
         $badgesToUser->setUnlockDate(new \DateTime());
         $this->entityManager->persist($badgesToUser);
         $this->entityManager->flush();
@@ -92,7 +98,6 @@ class UserBadgeProgressService
 
         $badgesToUser->setState(State::LOCKED);
         $badgesToUser->setProgress(0);
-        $badgesToUser->setChangeDate(new \DateTime());
         $badgesToUser->setUnlockDate(null);
         $this->entityManager->persist($badgesToUser);
         $this->entityManager->flush();

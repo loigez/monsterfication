@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\DomainModel\UserBadgeProgressService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,10 +21,13 @@ class MainController extends Controller
         $userData = $userService->getById($userId);
         $allProgressBadges = $userData->getAllProgressBadges();
 
+        /** @var UserBadgeProgressService $badgeProgressService */
+        $badgeProgressService = $this->get('user_badge_progress.service');
+
         return $this->render('default/index.html.twig',
             [
-                'allBadgesWithProgress' => $allProgressBadges
-                //'activityProgress' => $allProgressBadges
+                'allBadgesWithProgress' => $allProgressBadges,
+                'activities' => $badgeProgressService->lastActivity(),
                 //'topTen' => $allProgressBadges
             ]);
     }
