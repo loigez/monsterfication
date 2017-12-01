@@ -2,7 +2,7 @@
 
 namespace AppBundle\Entity\Rules;
 
-use AppBundle\DomainModel\Commit;
+use AppBundle\Entity\Commit;
 use AppBundle\Entity\UserBadgeProgress;
 
 abstract class Rule
@@ -32,4 +32,10 @@ abstract class Rule
             $this->progressBadge->unlockBadge();
         }
     }
+
+    public function updateProgress(): UserBadgeProgress
+    {
+        return $this->progressBadge;
+    }
+
 }

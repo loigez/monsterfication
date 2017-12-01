@@ -35,6 +35,9 @@ services:
     user.service:
       class: AppBundle\DomainModel\UserService
       arguments: [ "@doctrine.orm.entity_manager" ]
+    commit.service:
+      class: AppBundle\DomainModel\CommitService
+      arguments: [ "@doctrine.orm.entity_manager" ]
     git_lab_hook.service:
       class: AppBundle\DomainModel\GitLabHookService
       arguments: ["@user.service", "@user_badge_progress.service"]
