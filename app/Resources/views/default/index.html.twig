@@ -55,6 +55,11 @@
                 <div class="widget">
                     <div class="widget-title">Activity stream</div>
                     <div class="widget-body stream">
+                    {% for activity in activities %}
+                        {{ activity.badge.name }}
+                        {{ activity.user.nickname }}
+                        {{ activity.state }}
+                        {{ activity.changeDate|date("m/d/Y H:i:s") }}
                         <div class="stream-item">
                             <div class="stream-item-avatar">
                                 <img src="/assets/images/avatar.png" alt="">
@@ -69,6 +74,7 @@
                                 <span>30.11.2017</span>
                             </div>
                         </div>
+                    {% endfor %}
                     </div>
                 </div>
             </div>

@@ -26,6 +26,13 @@ class UserBadgeProgressService
     }
 
     /**
+     * @return mixed
+     */
+    public function lastActivity()
+    {
+        return $this->entityManager->getRepository(UserBadgeProgress::class)->findLastActivity();
+    }
+    /**
      * @param User $user
      * @param Badge[] $badges
      */

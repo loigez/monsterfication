@@ -3,30 +3,26 @@
 
 namespace AppBundle\Repository;
 
-
-use AppBundle\Entity\Badge;
-use AppBundle\Entity\User;
+use AppBundle\Entity\State;
+use AppBundle\Entity\UserBadgeProgress;
 use Doctrine\ORM\EntityRepository;
 
 class UserBadgeProgressRepository extends EntityRepository
 {
-
     /**
-     * @param Badge $badge
-     * @param User $user
      * @return array
      */
-    public function findBadgeProgressForUser(Badge $badge, User $user)
+    public function findLastActivity()
     {
-        $query = $this->getEntityManager()->createQuery(
-            'SELECT ubp
-             FROM AppBundle:UserBadgeProgress ubp
-             WHERE ubp.user = :userToFind
-             AND ubp.badge = :badgeToFind'
-        )->setParameter('userToFind', $user)
-            ->setParameter('badgeToFind', $badge);
+        $repo = $this->getEntityManager()->getRepository(UserBadgeProgress::class);
+        $query = $repo
+            ->createQueryBuilder('ubp')
+            ->where('ubp.state = :state')
+            ->andWhere('ubp.changeDate IS NOT NULL')
+            ->orderBy('ubp.changeDate', 'DESC')
+            ->setParameter('state', State::UNLOCKED)
+            ->getQuery();
 
-        return $query->getSingleResult();
+        return $query->getResult();
     }
-
 }
