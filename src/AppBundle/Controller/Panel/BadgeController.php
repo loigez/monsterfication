@@ -52,14 +52,13 @@ class BadgeController extends Controller
             $userService = $this->get('user.service');
             $users = $userService->findAll();
 
-            //badge ???
 
             /** @var UserBadgeProgressService $userBadgeProgressService */
             $userBadgeProgressService = $this->get('user_badge_progress.service');
-           // $userBadgeProgressService->assignBadgeToUsers($users, $badge);
+            $userBadgeProgressService->assignBadgeToUsers($users, $badge);
 
 
-            return $this->redirectToRoute('admin_panel_index');
+            return $this->redirectToRoute('admin_panel_badge_index');
         }
 
         return $this->render('panel/Badge/add_badge.html.twig', [
