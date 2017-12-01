@@ -3,26 +3,93 @@
 {% block body %}
     <div class="container">
         <div id="welcome">
-            <h1>ADD BADGE</h1>
+            <h1 class="text-center">Add badge</h1>
         </div>
-
+        <br>
         {% block header_navigation_links %}
-            <li>
-                <a href="{{ path('admin_panel_user_index') }}">
-                    <i class="fa fa-home" aria-hidden="true"></i> {{ 'menu.user.index'|trans }}
-                </a>
-            </li>
-
-            <li>
-                <a href="{{ path('admin_panel_badge_index') }}">
-                    <i class="fa fa-list-alt" aria-hidden="true"></i> {{ 'menu.badge.index'|trans }}
-                </a>
-            </li>
+            <ul class="nav nav-pills nav-fill">
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ path('admin_panel_badge_index') }}">Badge index</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('admin_panel_user_index') }}">User index</a>
+                </li>
+            </ul>
         {% endblock %}
+        <br>
 
-        {{ form_start(badge_form) }}
-        {{ form_widget(badge_form) }}
-        {{ form_end(badge_form) }}
+        <div class="login-wrapper">
+            <form name="badge" method="post">
+                <span class="input input--hoshi">
+                    {{ form_widget(badge_form.name, { 'attr': {'class': 'input__field input__field--hoshi'} }) }}
+                    <label class="input__label input__label--hoshi input__label--hoshi-color-2" for="badge_name">
+                        <span class="input__label-content input__label-content--hoshi">Name</span>
+                    </label>
+                </span>
 
+                <label class="label-textarea" for="badge_description">Description</label>
+                <span class="input input--hoshi">
+                    {{ form_widget(badge_form.description, { 'attr': {'class': 'input__field input__field--hoshi'} }) }}
+                    <label class="input__label input__label--hoshi input__label--hoshi-color-2" for="badge_description">
+                    </label>
+                </span>
+
+                <span class="input input--hoshi">
+                    {{ form_widget(badge_form.iconName, { 'attr': {'class': 'input__field input__field--hoshi'} }) }}
+                    <label class="input__label input__label--hoshi input__label--hoshi-color-2" for="badge_iconName">
+                        <span class="input__label-content input__label-content--hoshi">Icon name</span>
+                    </label>
+                </span>
+
+                <span class="input input--hoshi">
+                    {{ form_widget(badge_form.rule, { 'attr': {'class': 'input__field input__field--hoshi'} }) }}
+                    <label class="input__label input__label--hoshi input__label--hoshi-color-2" for="badge_rule">
+                        <span class="input__label-content input__label-content--hoshi">Rule</span>
+                    </label>
+                </span>
+
+                <div class="text-right">
+                    <button class="btn btn-primary" type="submit" id="badge_submit" name="badge[submit]">Create badge</button>
+                </div>
+
+            </form>
+        </div>
     </div>
+
+    <script src="/assets/js/classie.js"></script>
+    <script>
+        (function() {
+            // trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim
+            if (!String.prototype.trim) {
+                (function() {
+                    // Make sure we trim BOM and NBSP
+                    var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+                    String.prototype.trim = function() {
+                        return this.replace(rtrim, '');
+                    };
+                })();
+            }
+
+            [].slice.call( document.querySelectorAll( 'input.input__field' ) ).forEach( function( inputEl ) {
+                // in case the input is already filled..
+                if( inputEl.value.trim() !== '' ) {
+                    classie.add( inputEl.parentNode, 'input--filled' );
+                }
+
+                // events:
+                inputEl.addEventListener( 'focus', onInputFocus );
+                inputEl.addEventListener( 'blur', onInputBlur );
+            } );
+
+            function onInputFocus( ev ) {
+                classie.add( ev.target.parentNode, 'input--filled' );
+            }
+
+            function onInputBlur( ev ) {
+                if( ev.target.value.trim() === '' ) {
+                    classie.remove( ev.target.parentNode, 'input--filled' );
+                }
+            }
+        })();
+    </script>
 {% endblock %}

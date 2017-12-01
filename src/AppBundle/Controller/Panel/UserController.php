@@ -22,7 +22,7 @@ class UserController extends Controller
         /** @var UserService $badgeService */
         $userService = $this->get('user.service');
 
-        return $this->render('panel/user/index.html.twig', [
+        return $this->render('panel/User/index.html.twig', [
             'users' => $userService->findAll(),
         ]);
 
