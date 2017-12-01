@@ -25,7 +25,7 @@ class User extends BaseUser
     /**
      * One User has Many UserBadgeProgresses.
      * @OneToMany(targetEntity="UserBadgeProgress", mappedBy="user")
-     * @ORM\OrderBy({"state" = "desc"})
+     * @ORM\OrderBy({"state" = "desc", "progress" = "desc"})
      * @var ArrayCollection
      */
     private $userBadgeProgresses;
