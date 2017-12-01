@@ -10,9 +10,10 @@
         </span>
         </div>
     </nav>
-    {{ parent() }}
+    <div class="alert alert-success" style="text-align: center">
+        User created. Have fun!
+    </div>
     <div class="login-wrapper text-center">
-        <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
         {% if targetUrl %}
             <p><a class="btn btn-primary" href="{{ targetUrl }}">Go to dashboard</a></p>
         {% endif %}

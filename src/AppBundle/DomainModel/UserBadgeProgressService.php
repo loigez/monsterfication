@@ -128,5 +128,27 @@ class UserBadgeProgressService
         return $this->entityManager->getRepository(UserBadgeProgress::class)->find($id);
     }
 
+    /**
+     * @param Badge $badge
+     * @return null|object
+     */
+    public function getByBadge(Badge $badge)
+    {
+        return $this->entityManager->getRepository(UserBadgeProgress::class)
+            ->findBy(array('badge' => $badge));
+    }
+
+    /**
+     * @param UserBadgeProgress[] $userBadgeProgress
+     */
+    public function unasigneBadgeFromUsers(array $userBadgeProgress)
+    {
+        foreach ($userBadgeProgress as $progress) {
+            $this->entityManager->remove($progress);
+        }
+
+        $this->entityManager->flush();
+    }
+
 
 }

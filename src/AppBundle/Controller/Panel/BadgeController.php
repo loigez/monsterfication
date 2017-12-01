@@ -65,4 +65,51 @@ class BadgeController extends Controller
             'badge_form' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/panel/badge/delete/{id}", name="admin_panel_badge_delete")
+     */
+    public function deleteBadgeAction(Request $request)
+    {
+        /** @var BadgeService $badgeService */
+        $badgeService = $this->get('badge.service');
+        $badge = $badgeService->find((int)$request->get('id', null));
+
+        /** @var UserBadgeProgressService $userBadgeProgressService */
+        $userBadgeProgressService = $this->get('user_badge_progress.service');
+        $userBadgeProgress = $userBadgeProgressService->getByBadge($badge);
+
+        $userBadgeProgressService->unasigneBadgeFromUsers($userBadgeProgress);
+        $badgeService->delete($badge);
+
+        return $this->redirectToRoute('admin_panel_badge_index');
+
+    }
+
+    /**
+     * @Route("/panel/badge/edit/{id}", name="admin_panel_badge_edit")
+     */
+    public function editBadgeAction(Request $request)
+    {
+        /** @var BadgeService $badgeService */
+        $badgeService = $this->get('badge.service');
+
+        $badge = $badgeService->find((int)$request->get('id', null));
+        $form = $this->createForm(BadgeType::class, $badge);
+        $form->add('submit', SubmitType::class, array(
+            'label' => 'Edit badge',
+        ));
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var Badge $badge */
+            $badgeService->save($form->getData());
+
+            return $this->redirectToRoute('admin_panel_badge_index');
+        }
+
+        return $this->render('panel/Badge/add_badge.html.twig', [
+            'badge_form' => $form->createView(),
+        ]);
+    }
 }
