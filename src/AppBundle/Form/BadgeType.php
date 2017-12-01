@@ -18,6 +18,7 @@ class BadgeType extends AbstractType
             ->add('name', TextType::class)
             ->add('description', TextareaType::class)
             ->add('iconName', TextType::class)
+            ->add('target', TextType::class)
             ->add('rule', TextType::class);
     }
 
