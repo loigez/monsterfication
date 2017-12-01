@@ -7809,6 +7809,9 @@ input[type='submit'] {
 .mf-badge-locked .mf-badge-content-desc {
   color: #909090;
 }
+.widget {
+  margin-bottom: 40px;
+}
 .widget-title {
   color: #909090;
   font-size: 14px;
@@ -7825,6 +7828,8 @@ input[type='submit'] {
 }
 .stream-item-avatar img {
   border-radius: 50%;
+  max-width: 45px;
+  width: 45px;
 }
 .stream-item-content {
   margin-left: 10px;

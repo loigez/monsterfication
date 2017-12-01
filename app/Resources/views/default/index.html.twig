@@ -58,7 +58,11 @@
                     {% for activity in activities %}
                         <div class="stream-item">
                             <div class="stream-item-avatar">
-                                <img src="/assets/images/avatar.png" alt="">
+                                {% if gravatar_exists(activity.user.email) %}
+                                    <img src="{{ gravatar(activity.user.email) }}" />
+                                {% else %}
+                                    <img src="/assets/images/big-avatar.png" alt="">
+                                {% endif %}
                             </div>
                             <div class="stream-item-content">
                                 <h5 class="stream-item-content-title">{{ activity.user.nickname }}</h5>
@@ -73,16 +77,34 @@
                     {% endfor %}
                     </div>
                 </div>
+
+                <div class="widget">
+                    <div class="widget-title">Top 10</div>
+                    <div class="widget-body stream">
+                        {% for item in topTen %}
+                            <div class="stream-item">
+                                <div class="stream-item-avatar">
+                                    {% if gravatar_exists(item.0.user.email) %}
+                                        <img src="{{ gravatar(item.0.user.email) }}" />
+                                    {% else %}
+                                        <img src="/assets/images/big-avatar.png" alt="">
+                                    {% endif %}
+                                </div>
+                                <div class="stream-item-content">
+                                    <h5 class="stream-item-content-title">{{ item.0.user.nickname }}</h5>
+                                    <div class="stream-item-content-desc">
+                                        unlocked: <strong>{{ item.0.badge.name }}</strong>
+                                    </div>
+                                </div>
+                                <div class="stream-item-date">
+                                    <span>{{ item.counter }}</span>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
-
-    {% for item in topTen %}
-        NICK: {{ item.0.user.nickname }} <br/>
-        BADGE: {{ item.0.badge.name }} <br/>
-        COUNTER: {{ item.counter }} <br/>
-        <br/><br/>
-    {% endfor %}
 
 {% endblock %}
