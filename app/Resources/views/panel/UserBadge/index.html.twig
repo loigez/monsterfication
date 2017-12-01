@@ -20,7 +20,6 @@
         <table class="table bg-white">
             <thead>
             <tr>
-                <th scope="col">ID</th>
                 <th scope="col">NAME</th>
                 <th scope="col">DESCRIPTION</th>
                 <th scope="col">ACTION</th>
@@ -29,7 +28,6 @@
             <tbody>
             {% for badgeWithProgress in allBadgesWithProgress %}
                 <tr>
-                    <td>{{ badgeWithProgress.badge.id }}</td>
                     <td>{{ badgeWithProgress.badge.name }}</td>
                     <td>{{ badgeWithProgress.badge.description }}</td>
                     <td class="text-right">
