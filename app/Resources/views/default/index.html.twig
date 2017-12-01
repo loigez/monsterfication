@@ -76,4 +76,13 @@
             </div>
         </div>
     </div>
+
+
+    {% for item in topTen %}
+        NICK: {{ item.0.user.nickname }} <br/>
+        BADGE: {{ item.0.badge.name }} <br/>
+        COUNTER: {{ item.counter }} <br/>
+        <br/><br/>
+    {% endfor %}
+
 {% endblock %}

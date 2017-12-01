@@ -3,58 +3,57 @@
 {% set stateCompleted = '2' %}
 
 {% block body %}
-    <h1>ASSIGN BADGES TO USER</h1>
-
-    {% block header_navigation_links %}
-        <li>
-            <a href="{{ path('admin_panel_user_index') }}">
-                <i class="fa fa-home" aria-hidden="true"></i> {{ 'menu.user.index'|trans }}
-            </a>
-        </li>
-
-        <li>
-            <a href="{{ path('admin_panel_badge_index') }}">
-                <i class="fa fa-list-alt" aria-hidden="true"></i> {{ 'menu.badge.index'|trans }}
-            </a>
-        </li>
-    {% endblock %}
-
-    <table>
-        <thead>
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">NAME</th>
-            <th scope="col">DESCRIPTION</th>
-            <th scope="col">ACTION</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for badgeWithProgress in allBadgesWithProgress %}
+    <div class="container">
+        <h1 class="text-center">Assign badges to user: {{ allBadgesWithProgress.owner.username }}</h1>
+        <br>
+        {% block header_navigation_links %}
+            <ul class="nav nav-pills nav-fill">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('admin_panel_badge_index') }}">Badge index</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ path('admin_panel_user_index') }}">User index</a>
+                </li>
+            </ul>
+        {% endblock %}
+        <br>
+        <table class="table bg-white">
+            <thead>
             <tr>
-                <td>{{ badgeWithProgress.badge.id }}</td>
-                <td>{{ badgeWithProgress.badge.name }}</td>
-                <td>{{ badgeWithProgress.badge.description }}</td>
-                <td class="text-right">
-                    <div>
-                    {% if badgeWithProgress.state == stateCompleted %}
-                        <a href="{{ path('admin_panel_user_badge_unactivate', {'id':badgeWithProgress.id}) }}">
-                            <i></i> {{ 'action.unactivate'|trans }}
-                        </a>
-                    {% else %}
-                        <a href="{{ path('admin_panel_user_badge_activate', {'id': badgeWithProgress.id}) }}">
-                            <i></i> {{ 'action.activate'|trans }}
-                        </a>
-                    {% endif %}
-                    </div>
-                </td>
+                <th scope="col">ID</th>
+                <th scope="col">NAME</th>
+                <th scope="col">DESCRIPTION</th>
+                <th scope="col">ACTION</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for badgeWithProgress in allBadgesWithProgress %}
+                <tr>
+                    <td>{{ badgeWithProgress.badge.id }}</td>
+                    <td>{{ badgeWithProgress.badge.name }}</td>
+                    <td>{{ badgeWithProgress.badge.description }}</td>
+                    <td class="text-right">
+                        <div>
+                            {% if badgeWithProgress.state == stateCompleted %}
+                                <a href="{{ path('admin_panel_user_badge_unactivate', {'id':badgeWithProgress.id}) }}">
+                                    <i></i> {{ 'action.unactivate'|trans }}
+                                </a>
+                            {% else %}
+                                <a class="btn btn-success btn-sm" href="{{ path('admin_panel_user_badge_activate', {'id': badgeWithProgress.id}) }}">
+                                    Activate
+                                </a>
+                            {% endif %}
+                        </div>
+                    </td>
 
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4" align="center">NOT FOUND</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4" align="center">NOT FOUND</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
 

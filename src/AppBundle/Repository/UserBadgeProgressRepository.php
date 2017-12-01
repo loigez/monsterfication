@@ -27,4 +27,24 @@ class UserBadgeProgressRepository extends EntityRepository
 
         return $query->getResult();
     }
+
+    /**
+     * @return array
+     */
+    public function findTopTen()
+    {
+        $repo = $this->getEntityManager()->getRepository(UserBadgeProgress::class);
+        $query = $repo
+            ->createQueryBuilder('ubp')
+            ->addSelect('COUNT(ubp.id) as counter')
+            ->where('ubp.state = :state')
+            ->orderBy('counter', 'DESC')
+            ->groupBy('ubp.user')
+            ->setFirstResult(0)
+            ->setMaxResults(5)
+            ->setParameter('state', State::UNLOCKED)
+            ->getQuery();
+
+        return $query->getResult();
+    }
 }

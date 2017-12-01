@@ -24,11 +24,12 @@ class MainController extends Controller
         /** @var UserBadgeProgressService $badgeProgressService */
         $badgeProgressService = $this->get('user_badge_progress.service');
 
+
         return $this->render('default/index.html.twig',
             [
                 'allBadgesWithProgress' => $allProgressBadges,
                 'activities' => $badgeProgressService->lastActivity(),
-                //'topTen' => $allProgressBadges
+                'topTen' => $badgeProgressService->topTen()
             ]);
     }
 }
