@@ -45,8 +45,6 @@ class BadgeService
     {
         $this->entityManager->persist($badge);
         $this->entityManager->flush();
-        var_dump($badge);
-        die();
     }
 
 }
