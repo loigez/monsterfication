@@ -31,7 +31,7 @@ class BadgeService
 
     /**
      * @param int $id
-     * @return null|object
+     * @return Badge
      */
     public function find($id)
     {
@@ -44,6 +44,15 @@ class BadgeService
     public function save(Badge $badge)
     {
         $this->entityManager->persist($badge);
+        $this->entityManager->flush();
+    }
+
+    /**
+     * @param Badge $badge
+     */
+    public function delete(Badge $badge)
+    {
+        $this->entityManager->remove($badge);
         $this->entityManager->flush();
     }
 

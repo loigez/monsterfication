@@ -65,4 +65,24 @@ class BadgeController extends Controller
             'badge_form' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/panel/badge/delete/{id}", name="admin_panel_badge_delete")
+     */
+    public function deleteBadgeAction(Request $request)
+    {
+        /** @var BadgeService $badgeService */
+        $badgeService = $this->get('badge.service');
+        $badge = $badgeService->find((int)$request->get('id', null));
+
+        /** @var UserBadgeProgressService $userBadgeProgressService */
+        $userBadgeProgressService = $this->get('user_badge_progress.service');
+        $userBadgeProgress = $userBadgeProgressService->getByBadge($badge);
+
+        $userBadgeProgressService->unasigneBadgeFromUsers($userBadgeProgress);
+        $badgeService->delete($badge);
+
+        return $this->redirectToRoute('admin_panel_badge_index');
+
+    }
 }
