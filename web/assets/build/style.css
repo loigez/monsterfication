@@ -7683,6 +7683,14 @@ input[type='submit'] {
 .profile-content {
   left: auto;
   right: 0;
+  padding: 10px;
+  padding-bottom: 20px;
+  border: 0;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+}
+.profile-content-email {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .profile-avatar {
   margin-left: 10px;
