@@ -47,8 +47,8 @@ class GitLabHookService
                 $commitItem['id'],
                 DateTime::createFromFormat(DateTime::ATOM, $commitItem['timestamp']),
                 $commitItem['author']['email'],
-                $matches[1][0],
-                $matches[2][0]
+                $matches[1],
+                $matches[2]
             ));
 
         }

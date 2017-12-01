@@ -10,7 +10,7 @@ class MakeCommitsNumberInProjectRule extends Rule
 
     public function updateProgress(): UserBadgeProgress
     {
-        if ($this->commit->getProjectCodeName() === self::PROJECT_CODE_NAME) {
+        if ($this->commit->getProjectCodeName() === static::PROJECT_CODE_NAME) {
             $this->progressBadge->incrementProgressByOne();
         }
 
