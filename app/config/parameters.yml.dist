@@ -17,4 +17,4 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
-    gitlab_token: ThisTokenIsNotSoSecretChangeIt
+    gitlab_token: 5138ad71-205f-43ea-b290-5e56a2d77f64

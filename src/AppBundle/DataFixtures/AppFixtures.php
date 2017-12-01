@@ -11,12 +11,6 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class AppFixtures extends Fixture
 {
-    const ICONS = [
-        'baby_step',
-        'lock',
-        'monster_insomnia_2017',
-        'run_forest_run',
-    ];
 
     const USERS = [
         'tomasz.galinski',
@@ -24,7 +18,8 @@ class AppFixtures extends Fixture
         'tomasz.majcher',
         'grzegorz.laskowski',
         'pawel.basiak',
-        'maciej.gerlecki'
+        'maciej.gerlecki',
+        'lukasz.czajka'
     ];
 
     const BADGES = [
