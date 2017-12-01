@@ -9,7 +9,7 @@ class OwlRule extends Rule
 
     public function updateProgress(): UserBadgeProgress
     {
-        if ($this->commit->getDate()->hour >= 22 && $this->commit->getDate()->hour <= 6) {
+        if ($this->commit->getDate()->hour >= 22 || $this->commit->getDate()->hour <= 6) {
             $this->progressBadge->incrementProgressByOne();
         }
 
