@@ -81,3 +81,6 @@ fos_user:
       confirmation:
         enabled: false
 
+ornicar_gravatar:
+  size: 75
+  default: mm
