@@ -18,8 +18,10 @@ class UserBadgeProgressRepository extends EntityRepository
         $query = $repo
             ->createQueryBuilder('ubp')
             ->where('ubp.state = :state')
-            ->andWhere('ubp.changeDate IS NOT NULL')
-            ->orderBy('ubp.changeDate', 'DESC')
+            ->andWhere('ubp.unlockDate IS NOT NULL')
+            ->orderBy('ubp.unlockDate', 'DESC')
+            ->setFirstResult(0)
+            ->setMaxResults(5)
             ->setParameter('state', State::UNLOCKED)
             ->getQuery();
 
