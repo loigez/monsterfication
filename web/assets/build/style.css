@@ -7694,6 +7694,8 @@ input[type='submit'] {
 }
 .profile-avatar {
   margin-left: 10px;
+  max-width: 46px;
+  max-height: 46px;
 }
 .profile .dropdown-toggle {
   color: #000;
