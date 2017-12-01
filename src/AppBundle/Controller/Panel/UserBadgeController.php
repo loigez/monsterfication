@@ -23,7 +23,7 @@ class UserBadgeController extends Controller
         $userService = $this->get('user.service');
         $userData = $userService->getById((int)$request->get('userId', null));
 
-        return $this->render('panel/userbadge/index.html.twig', [
+        return $this->render('panel/UserBadge/index.html.twig', [
             'allBadgesWithProgress' => $userData->getAllProgressBadges(),
             'user_id' => (int)$request->get('userId', null)
         ]);

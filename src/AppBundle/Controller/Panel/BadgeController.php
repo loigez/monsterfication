@@ -23,7 +23,7 @@ class BadgeController extends Controller
         /** @var BadgeService $badgeService */
         $badgeService = $this->get('badge.service');
 
-        return $this->render('panel/badge/index.html.twig', [
+        return $this->render('panel/Badge/index.html.twig', [
             'badges' => $badgeService->findAll(),
         ]);
 
@@ -62,7 +62,7 @@ class BadgeController extends Controller
             return $this->redirectToRoute('admin_panel_index');
         }
 
-        return $this->render('panel/badge/add_badge.html.twig', [
+        return $this->render('panel/Badge/add_badge.html.twig', [
             'badge_form' => $form->createView(),
         ]);
     }
