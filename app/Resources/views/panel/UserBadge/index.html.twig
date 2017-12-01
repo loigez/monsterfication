@@ -9,10 +9,10 @@
         {% block header_navigation_links %}
             <ul class="nav nav-pills nav-fill">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('admin_panel_badge_index') }}">Badge index</a>
+                    <a class="nav-link" href="{{ path('admin_panel_badge_index') }}">Badges</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="{{ path('admin_panel_user_index') }}">User index</a>
+                    <a class="nav-link active" href="{{ path('admin_panel_user_index') }}">Users</a>
                 </li>
             </ul>
         {% endblock %}
@@ -20,7 +20,6 @@
         <table class="table bg-white">
             <thead>
             <tr>
-                <th scope="col">ID</th>
                 <th scope="col">NAME</th>
                 <th scope="col">DESCRIPTION</th>
                 <th scope="col">ACTION</th>
@@ -29,14 +28,13 @@
             <tbody>
             {% for badgeWithProgress in allBadgesWithProgress %}
                 <tr>
-                    <td>{{ badgeWithProgress.badge.id }}</td>
                     <td>{{ badgeWithProgress.badge.name }}</td>
                     <td>{{ badgeWithProgress.badge.description }}</td>
                     <td class="text-right">
                         <div>
                             {% if badgeWithProgress.state == stateCompleted %}
-                                <a href="{{ path('admin_panel_user_badge_unactivate', {'id':badgeWithProgress.id}) }}">
-                                    <i></i> {{ 'action.unactivate'|trans }}
+                                <a class="btn btn-warning btn-sm" href="{{ path('admin_panel_user_badge_unactivate', {'id':badgeWithProgress.id}) }}">
+                                    Deactivate
                                 </a>
                             {% else %}
                                 <a class="btn btn-success btn-sm" href="{{ path('admin_panel_user_badge_activate', {'id': badgeWithProgress.id}) }}">

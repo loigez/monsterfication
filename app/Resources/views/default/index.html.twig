@@ -79,7 +79,7 @@
                 </div>
 
                 <div class="widget">
-                    <div class="widget-title">Top 10</div>
+                    <div class="widget-title">Top 5</div>
                     <div class="widget-body stream">
                         {% for item in topTen %}
                             <div class="stream-item">
@@ -93,7 +93,7 @@
                                 <div class="stream-item-content">
                                     <h5 class="stream-item-content-title">{{ item.0.user.nickname }}</h5>
                                     <div class="stream-item-content-desc">
-                                        unlocked: <strong>{{ item.0.badge.name }}</strong>
+                                        last unlocked: <strong>{{ item.0.badge.name }}</strong>
                                     </div>
                                 </div>
                                 <div class="stream-item-date">

@@ -7,10 +7,10 @@
     {% block header_navigation_links %}
         <ul class="nav nav-pills nav-fill">
             <li class="nav-item">
-                <a class="nav-link" href="{{ path('admin_panel_badge_index') }}">Badge index</a>
+                <a class="nav-link" href="{{ path('admin_panel_badge_index') }}">Badges</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="{{ path('admin_panel_user_index') }}">User index</a>
+                <a class="nav-link active" href="{{ path('admin_panel_user_index') }}">Users</a>
             </li>
         </ul>
     {% endblock %}
@@ -18,7 +18,6 @@
     <table class="table bg-white">
         <thead>
         <tr>
-            <th scope="col">ID</th>
             <th scope="col">NAME</th>
             <th scope="col">DESCRIPTION</th>
             <th scope="col">ACTION</th>
@@ -27,13 +26,12 @@
         <tbody>
         {% for user in users %}
             <tr>
-                <td>{{ user.id }}</td>
                 <td>{{ user.username }}</td>
                 <td>{{ user.email }}</td>
                 <td>
-                    <div>
-                        <a href="{{ path('admin_panel_user_badge_index', {userId: user.id}) }}">
-                            <i class="fa fa-eye" aria-hidden="true"></i> {{ 'action.assign_badge'|trans }}
+                    <div class="text-right">
+                        <a class="btn btn-success btn-sm" href="{{ path('admin_panel_user_badge_index', {userId: user.id}) }}">
+                            Assign badge
                         </a>
                     </div>
                 </td>
