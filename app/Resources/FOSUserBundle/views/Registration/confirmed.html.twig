@@ -12,7 +12,6 @@
     </nav>
     {{ parent() }}
     <div class="login-wrapper text-center">
-        <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
         {% if targetUrl %}
             <p><a class="btn btn-primary" href="{{ targetUrl }}">Go to dashboard</a></p>
         {% endif %}
