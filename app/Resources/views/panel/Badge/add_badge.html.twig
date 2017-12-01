@@ -48,6 +48,13 @@
                     </label>
                 </span>
 
+                <span class="input input--hoshi">
+                    {{ form_widget(badge_form.target, { 'attr': {'class': 'input__field input__field--hoshi'} }) }}
+                    <label class="input__label input__label--hoshi input__label--hoshi-color-2" for="badge_target">
+                        <span class="input__label-content input__label-content--hoshi">Target</span>
+                    </label>
+                </span>
+
                 {{ form_widget(badge_form._token) }}
 
                 <div class="text-right">
