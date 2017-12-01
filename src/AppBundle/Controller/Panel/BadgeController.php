@@ -87,7 +87,7 @@ class BadgeController extends Controller
     }
 
     /**
-     * @Route("/panel/badge/edit{id}", name="admin_panel_badge_edit")
+     * @Route("/panel/badge/edit/{id}", name="admin_panel_badge_edit")
      */
     public function editBadgeAction(Request $request)
     {
