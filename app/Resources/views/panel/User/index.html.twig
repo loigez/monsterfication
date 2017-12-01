@@ -31,9 +31,9 @@
                 <td>{{ user.username }}</td>
                 <td>{{ user.email }}</td>
                 <td>
-                    <div>
-                        <a href="{{ path('admin_panel_user_badge_index', {userId: user.id}) }}">
-                            <i class="fa fa-eye" aria-hidden="true"></i> {{ 'action.assign_badge'|trans }}
+                    <div class="text-right">
+                        <a class="btn btn-success btn-sm" href="{{ path('admin_panel_user_badge_index', {userId: user.id}) }}">
+                            Assign badge
                         </a>
                     </div>
                 </td>

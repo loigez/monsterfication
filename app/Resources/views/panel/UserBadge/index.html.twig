@@ -35,8 +35,8 @@
                     <td class="text-right">
                         <div>
                             {% if badgeWithProgress.state == stateCompleted %}
-                                <a href="{{ path('admin_panel_user_badge_unactivate', {'id':badgeWithProgress.id}) }}">
-                                    <i></i> {{ 'action.unactivate'|trans }}
+                                <a class="btn btn-warning btn-sm" href="{{ path('admin_panel_user_badge_unactivate', {'id':badgeWithProgress.id}) }}">
+                                    Deactivate
                                 </a>
                             {% else %}
                                 <a class="btn btn-success btn-sm" href="{{ path('admin_panel_user_badge_activate', {'id': badgeWithProgress.id}) }}">
